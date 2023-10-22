@@ -1,8 +1,10 @@
 "use client";
 import {useRouter} from "next/navigation"
+import GET from "@/app/api/server/route"
 
 function IndexPage () {
   const router = useRouter();
+  
   return (
     <>
 <section className="vh-100">

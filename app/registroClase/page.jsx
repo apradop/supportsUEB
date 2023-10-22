@@ -7,10 +7,9 @@ function RegisterPage() {
           Cédula
         </label>
         <input
-          type="email"
+          type="number"
           className="form-control"
           id="exampleFormControlInput1"
-          placeholder="name@example.com"
         />
       </div>
       <button type="submit" className="btn btn-primary mb-3">
