@@ -1,51 +1,93 @@
 "use client";
-import {useRouter} from "next/navigation"
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-function IndexPage () {
+function IndexPage() {
   const router = useRouter();
+  const [user, setUser] = useState("");
 
-  async function fetchUsers(){
+ async function login(e) {
+    e.preventDefault();
+    const username = e.target.user.value;
+    const password = e.target.pass.value;
 
-    const res = await fetch("http://localhost:3000/api/server");
+    const res = await fetch('/api/login', {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
     const data = await res.json()
-    console.log(data)
+
+    if(data === true){
+
+      router.push("/registroClase")
+
+    }else{
+
+      console.log("ERROR")
+
+    }
 
   }
+
   return (
     <>
-<section className="vh-100">
-  <div className="container py-5 h-100">
-    <div className="row d-flex justify-content-center align-items-center h-100">
-      <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div className="card shadow-2-strong" style={{borderRadius: "1rem"}}>
-        <img className="card-img-top text-center" src="https://www.unbosque.edu.co/sites/default/files/logo.png" width={70}/>
-          <div className="card-body p-5 text-center">
-            <h3 className="mb-5">Iniciar sesión</h3>
+      <form onSubmit={login}>
+        <section className="vh-100">
+          <div className="container py-5 h-100">
+            <div className="row d-flex justify-content-center align-items-center h-100">
+              <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div
+                  className="card shadow-2-strong"
+                  style={{ borderRadius: "1rem" }}
+                >
+                  <img
+                    className="card-img-top text-center"
+                    src="https://www.unbosque.edu.co/sites/default/files/logo.png"
+                    width={70}
+                  />
+                  <div className="card-body p-5 text-center">
+                    <h3 className="mb-5">Iniciar sesión</h3>
 
-            <div className="form-outline mb-4">
-              <input type="email" id="typeEmailX-2" className="form-control form-control-lg" />
-              <label className="form-label" htmlFor="typeEmailX-2">Correo</label>
+                    <div className="form-outline mb-4">
+                      <input
+                        type="text"
+                        id="user"
+                        className="form-control form-control-lg"
+                      />
+                      <label className="form-label" htmlFor="user">
+                        Usuario
+                      </label>
+                    </div>
+                    <div className="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="pass"
+                        className="form-control form-control-lg"
+                      />
+                      <label className="form-label" htmlFor="pass">
+                        Contraseña
+                      </label>
+                    </div>
+                    <button
+                      className="btn btn-success btn-lg btn-block"
+                      type="submit"
+                    >
+                      Iniciar sesión
+                    </button>
+                    <hr className="my-4" />
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div className="form-outline mb-4">
-              <input type="password" id="typePasswordX-2" className="form-control form-control-lg" />
-              <label className="form-label" htmlFor="typePasswordX-2">Contraseña</label>
-            </div>
-            <button className="btn btn-success btn-lg btn-block" onClick={() =>{
-             fetchUsers()
-            router.push("/registroClase")
-          }}>Iniciar sesión</button>
-            <hr className="my-4"/>
-
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+        </section>
+      </form>
     </>
-  )
+  );
 }
 
-export default IndexPage
+export default IndexPage;
