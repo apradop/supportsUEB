@@ -35,7 +35,7 @@ function Navigation() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href="/users">
-                  Users
+                  Usuarios
                 </Link>
               </li>
               <li className="nav-item">
