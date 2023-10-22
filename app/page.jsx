@@ -24,7 +24,7 @@ function IndexPage () {
               <label className="form-label" htmlFor="typePasswordX-2">Contraseña</label>
             </div>
             <button className="btn btn-success btn-lg btn-block" onClick={() =>{
-            router.push("/users")
+            router.push("/registroClase")
           }}>Iniciar sesión</button>
             <hr className="my-4"/>
 

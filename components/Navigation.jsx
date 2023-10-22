@@ -20,22 +20,13 @@ function Navigation() {
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  href="/about"
-                >
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/services">
-                  Services
+                <Link className="nav-link" href="/registroClase">
+                  Registrar Clase
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href="/users">
-                  Usuarios
+                  Listado de clases
                 </Link>
               </li>
               <li className="nav-item">
@@ -46,6 +37,11 @@ function Navigation() {
                 >
                   SIPRE-UEB
                 </a>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/">
+                  Cerrar Sesión
+                </Link>
               </li>
             </ul>
           </div>
