@@ -1,10 +1,16 @@
 "use client";
 import {useRouter} from "next/navigation"
-import GET from "@/app/api/server/route"
 
 function IndexPage () {
   const router = useRouter();
-  
+
+  async function fetchUsers(){
+
+    const res = await fetch("http://localhost:3000/api/server");
+    const data = await res.json()
+    console.log(data)
+
+  }
   return (
     <>
 <section className="vh-100">
@@ -26,6 +32,7 @@ function IndexPage () {
               <label className="form-label" htmlFor="typePasswordX-2">Contraseña</label>
             </div>
             <button className="btn btn-success btn-lg btn-block" onClick={() =>{
+             fetchUsers()
             router.push("/registroClase")
           }}>Iniciar sesión</button>
             <hr className="my-4"/>
