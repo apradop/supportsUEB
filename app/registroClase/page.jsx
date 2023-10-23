@@ -1,7 +1,7 @@
 function RegisterPage() {
   return (
     <div>
-      <h1>Formulario</h1>
+      <h1>Registrar salón</h1>
       <div className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">
           Cédula
@@ -62,7 +62,7 @@ function RegisterPage() {
           Herramientas a utilizar
         </label>
         <select className="form-select" id="inputGroupSelect01">
-          <option>Choose...</option>
+          <option>Opciones...</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
