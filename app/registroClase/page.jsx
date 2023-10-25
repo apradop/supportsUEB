@@ -17,8 +17,9 @@ function RegisterPage() {
         });
     
         console.log(res)
-        const data = await res.text()
+        const data = await res.json()
         console.log(data)
+
 
     
       }

@@ -21,6 +21,7 @@ function IndexPage() {
 
     console.log(res)
     const data = await res.json()
+    console.log(data)
 
     if(data === true){
 
