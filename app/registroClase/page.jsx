@@ -1,4 +1,30 @@
+"use client";
+
 function RegisterPage() {
+
+  const paramsObj = {actionID:'consultardatos', Fecha_ini:'2023-04-24', Fecha_Fin:'2023-04-30', Num_Docente:'', Num_Estudiante:'1000615837'};
+  const searchParams = new URLSearchParams(paramsObj);
+
+
+  async function login() {
+    
+        const res = await fetch('/api/buscarProfe', {
+          method: "POST",
+          body: JSON.stringify({}),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+    
+        console.log(res)
+        const data = await res.text()
+        console.log(data)
+
+    
+      }
+
+
+
   return (
     <div>
       <h1>Registrar salón</h1>
@@ -12,7 +38,9 @@ function RegisterPage() {
           id="exampleFormControlInput1"
         />
       </div>
-      <button type="submit" className="btn btn-primary mb-3">
+      <button className="btn btn-primary mb-3" onClick={() => {
+        login()
+      }}>
         Buscar
       </button>
       <div className="mb-3">
