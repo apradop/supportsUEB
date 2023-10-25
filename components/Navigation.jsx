@@ -25,7 +25,7 @@ function Navigation() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="/users">
+                <Link className="nav-link" href="/listadoClases">
                   Listado de clases
                 </Link>
               </li>
