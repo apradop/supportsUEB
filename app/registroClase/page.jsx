@@ -1,30 +1,38 @@
 "use client";
 
+import { useState } from "react";
+
 function RegisterPage() {
+  const [cedula, setCedula] = useState("");
 
-  const paramsObj = {actionID:'consultardatos', Fecha_ini:'2023-04-24', Fecha_Fin:'2023-04-30', Num_Docente:'', Num_Estudiante:'1000615837'};
-  const searchParams = new URLSearchParams(paramsObj);
+  const [nombre, setNombre] = useState("");
+  const [programa, setPrograma] = useState("");
+  const [materia, setMateria] = useState("");
+  const [salon, setSalon] = useState("");
+  const [horaIni, setHoraIni] = useState("");
+  const [horaFini, setHoraFini] = useState("");
+  const [herramientas, setHerramientas] = useState("");
+  const [observaciones, setObservaciones] = useState("");
 
+  const [isReady, setIsReady] = useState(false);
 
-  async function login() {
-    
-        const res = await fetch('/api/buscarProfe', {
-          method: "POST",
-          body: JSON.stringify({}),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-    
-        console.log(res)
-        const data = await res.json()
-        console.log(data)
+  async function login(cedula) {
+    const res = await fetch("/api/buscarProfe", {
+      method: "POST",
+      body: JSON.stringify({ cedula }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-
-    
-      }
-
-
+    const data = await res.json();
+    setNombre(data[0].NombreDocente);
+    setPrograma(data[0].Programa);
+    setSalon(data[0].EspacioFisico);
+    setHoraIni(data[0].HoraInicial);
+    setHoraFini(data[0].HoraFinal);
+    setMateria(data[0].Materia);
+  }
 
   return (
     <div>
@@ -37,11 +45,17 @@ function RegisterPage() {
           type="number"
           className="form-control"
           id="exampleFormControlInput1"
+          min="1"
+          value={cedula}
+          onChange={(e) => setCedula(e.target.value)}
         />
       </div>
-      <button className="btn btn-primary mb-3" onClick={() => {
-        login()
-      }}>
+      <button
+        className="btn btn-primary mb-3"
+        onClick={() => {
+          login(cedula);
+        }}
+      >
         Buscar
       </button>
       <div className="mb-3">
@@ -52,6 +66,8 @@ function RegisterPage() {
           className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
         ></input>
         <label htmlFor="exampleFormControlTextarea1" className="form-label">
           Programa académico
@@ -60,6 +76,18 @@ function RegisterPage() {
           className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
+          value={programa}
+          onChange={(e) => setPrograma(e.target.value)}
+        ></input>
+        <label htmlFor="exampleFormControlTextarea1" className="form-label">
+          Materia
+        </label>
+        <input
+          className="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          value={materia}
+          onChange={(e) => setMateria(e.target.value)}
         ></input>
         <label htmlFor="exampleFormControlTextarea1" className="form-label">
           Salón
@@ -68,6 +96,8 @@ function RegisterPage() {
           className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
+          value={salon}
+          onChange={(e) => setSalon(e.target.value)}
         ></input>
         <label htmlFor="exampleFormControlInput1" className="form-label">
           Hora inicial
@@ -77,6 +107,8 @@ function RegisterPage() {
           id="exampleFormControlInput1"
           placeholder="name@example.com"
           type="time"
+          value={horaIni}
+          onChange={(e) => setHoraIni(e.target.value)}
         />
         <label htmlFor="exampleFormControlInput1" className="form-label">
           Hora final
@@ -86,6 +118,8 @@ function RegisterPage() {
           className="form-control"
           id="exampleFormControlInput1"
           placeholder="name@example.com"
+          value={horaFini}
+          onChange={(e) => setHoraFini(e.target.value)}
         />
         <label htmlFor="exampleFormControlTextarea1" className="form-label">
           Herramientas a utilizar
