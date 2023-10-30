@@ -49,7 +49,7 @@ function RegisterPage() {
         Buscar
       </button>
       <div className="">
-        <RegistrarClase profes={datos} />
+        <RegistrarClase profes={datos} llave={cedula} />
       </div>
     </div>
   );

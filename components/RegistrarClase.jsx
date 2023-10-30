@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ModalRegistros from "@/components/ModalRegistros"
+import { NormalizeError } from "next/dist/shared/lib/utils";
 
-function RegistrarClase({ profes }) {
+
+function RegistrarClase({ profes, llave }) {
   const [nombre, setNombre] = useState("");
   const [programa, setPrograma] = useState("");
   const [materia, setMateria] = useState("");
@@ -11,6 +14,9 @@ function RegistrarClase({ profes }) {
   const [horaFini, setHoraFini] = useState("");
   const [herramientas, setHerramientas] = useState("");
   const [observaciones, setObservaciones] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false)
+  const keyProfe = llave;
+  
 
   useEffect(() => {
     if (
@@ -21,6 +27,7 @@ function RegistrarClase({ profes }) {
       setProfesor();
     } else {
       setVacio();
+      
     }
   }, [profes]);
 
@@ -31,6 +38,7 @@ function RegistrarClase({ profes }) {
     setSalon(profes.EspacioFisico);
     setHoraIni(profes.HoraInicial);
     setHoraFini(profes.HoraFinal);
+    setIsDisabled(true)
   }
 
   function setVacio() {
@@ -40,7 +48,9 @@ function RegistrarClase({ profes }) {
     setSalon("");
     setHoraIni("");
     setHoraFini("");
+    setIsDisabled(false)
   }
+
 
   return (
     <div className="container">
@@ -48,7 +58,7 @@ function RegistrarClase({ profes }) {
         <div className="row">
           <div className="col">
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
-              Responsable
+              Responsable 
             </label>
             <input
               className="form-control"
@@ -56,6 +66,7 @@ function RegistrarClase({ profes }) {
               rows="3"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
+              disabled={isDisabled}
             ></input>
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
               Programa académico
@@ -66,6 +77,7 @@ function RegistrarClase({ profes }) {
               rows="3"
               value={programa}
               onChange={(e) => setPrograma(e.target.value)}
+              disabled={isDisabled}
             ></input>
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
               Materia
@@ -76,6 +88,7 @@ function RegistrarClase({ profes }) {
               rows="3"
               value={materia}
               onChange={(e) => setMateria(e.target.value)}
+              disabled={isDisabled}
             ></input>
           </div>
           <div className="col">
@@ -88,6 +101,7 @@ function RegistrarClase({ profes }) {
               rows="3"
               value={salon}
               onChange={(e) => setSalon(e.target.value)}
+              disabled={isDisabled}
             ></input>
             <label htmlFor="exampleFormControlInput1" className="form-label">
               Hora inicial
@@ -99,6 +113,7 @@ function RegistrarClase({ profes }) {
               type="time"
               value={horaIni}
               onChange={(e) => setHoraIni(e.target.value)}
+              disabled={isDisabled}
             />
             <label htmlFor="exampleFormControlInput1" className="form-label">
               Hora final
@@ -110,6 +125,7 @@ function RegistrarClase({ profes }) {
               placeholder="name@example.com"
               value={horaFini}
               onChange={(e) => setHoraFini(e.target.value)}
+              disabled={isDisabled}
             />
           </div>
         </div>
@@ -186,11 +202,12 @@ function RegistrarClase({ profes }) {
               Observaciones
             </label>
             <textarea
-              className="form-control"
+              className="form-control mb-3"
               id="exampleFormControlTextarea1"
               rows="3"
             ></textarea>
-            <button className="btn btn-primary mb-3">Registrar</button>
+            <ModalRegistros nombre={nombre} programa={programa} materia={materia}
+            salon={salon} horaFini={horaFini} horaIni={horaIni} herramientas={herramientas} observacioones={observaciones} />
           </div>
         </div>
       </div>
