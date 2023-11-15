@@ -48,7 +48,7 @@ export async function POST(request) {
         var urlencoded = new URLSearchParams();
         urlencoded.append("actionID", "consultardatos");
         urlencoded.append("Fecha_ini", fulldate);
-        urlencoded.append("Fecha_Fin", "2023-10-31");
+        urlencoded.append("Fecha_Fin", fulldate);
         urlencoded.append("Num_Docente", cedula);
         
         var requestOptions = {

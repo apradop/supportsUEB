@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import ModalRegistros from "@/components/ModalRegistros"
-import { NormalizeError } from "next/dist/shared/lib/utils";
 
 
 function RegistrarClase({ profes, llave }) {
@@ -134,7 +133,14 @@ function RegistrarClase({ profes, llave }) {
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
               Herramientas a utilizar
             </label>
-            <select className="form-select" id="inputGroupSelect01">
+            <select className="form-select" id="inputGroupSelect01" multiple
+            onChange={(e) => {
+
+              const options = [...e.target.selectedOptions];
+              const values = options.map(option => option.value);
+              setHerramientas(values.toString());
+
+            }}>
               <option>ARGIS</option>
               <option>ARGIS PRO</option>
               <option>AUTODESK 3DMAX</option>
@@ -205,9 +211,10 @@ function RegistrarClase({ profes, llave }) {
               className="form-control mb-3"
               id="exampleFormControlTextarea1"
               rows="3"
+              onChange={(e) => setObservaciones(e.target.value)}
             ></textarea>
             <ModalRegistros nombre={nombre} programa={programa} materia={materia}
-            salon={salon} horaFini={horaFini} horaIni={horaIni} herramientas={herramientas} observacioones={observaciones} />
+            salon={salon} horaFini={horaFini} horaIni={horaIni} herramientas={herramientas} observaciones={observaciones} />
           </div>
         </div>
       </div>

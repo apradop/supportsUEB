@@ -1,5 +1,5 @@
-import React from "react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 function ModalRegistros({
   nombre,
@@ -9,12 +9,39 @@ function ModalRegistros({
   horaIni,
   horaFini,
   herramientas,
-  observacioones,
+  observaciones,
 }) {
-
-  const [vacio, setVacio] =  useState(""); 
+  const [vacio, setVacio] = useState("");
+  const router = useRouter();
 
   useEffect(() => {});
+
+  function imprimir(){
+
+    console.log(nombre)
+    console.log(programa)
+    console.log(materia)
+    console.log(salon)
+    console.log(horaIni)
+    console.log(horaFini)
+    console.log(herramientas)
+    console.log(observaciones)
+
+  }
+
+  async function RegistrarClase() {
+    const res = await fetch("/api/registrarClase", {
+      method: "POST",
+      body: JSON.stringify({ nombre, programa, materia, salon, horaIni, horaFini, herramientas, observaciones }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+
+    const data = await res.json();
+  
+  }
 
   return (
     <div>
@@ -24,6 +51,7 @@ function ModalRegistros({
           className="btn btn-primary"
           data-bs-toggle="modal"
           data-bs-target="#modal"
+          onClick={() => imprimir()}
         >
           Registrar
         </button>
@@ -67,18 +95,18 @@ function ModalRegistros({
                     </div>
                   </div>
                   <div className="col">
-                      <div className="form-floating mb-3">
-                        <input
-                          type="text"
-                          className="form-control-plaintext"
-                          id="floatingPlaintextInput"
-                          value={materia}
-                          onChange={(e) => setVacio(e.target.value)}
-                          disabled
-                        />
-                        <label htmlFor="floatingPlaintextInput">Materia</label>
-                      </div>
+                    <div className="form-floating mb-3">
+                      <input
+                        type="text"
+                        className="form-control-plaintext"
+                        id="floatingPlaintextInput"
+                        value={materia}
+                        onChange={(e) => setVacio(e.target.value)}
+                        disabled
+                      />
+                      <label htmlFor="floatingPlaintextInput">Materia</label>
                     </div>
+                  </div>
                 </div>
                 <div className="row">
                   <div className="col">
@@ -91,22 +119,24 @@ function ModalRegistros({
                         onChange={(e) => setVacio(e.target.value)}
                         disabled
                       />
-                      <label htmlFor="floatingPlaintextInput">Hora Inicial</label>
+                      <label htmlFor="floatingPlaintextInput">
+                        Hora Inicial
+                      </label>
                     </div>
                   </div>
                   <div className="col">
-                      <div className="form-floating mb-3">
-                        <input
-                          type="time"
-                          className="form-control-plaintext"
-                          id="floatingPlaintextInput"
-                          value={horaFini}
-                          onChange={(e) => setVacio(e.target.value)}
-                          disabled
-                        />
-                        <label htmlFor="floatingPlaintextInput">Hora Final</label>
-                      </div>
+                    <div className="form-floating mb-3">
+                      <input
+                        type="time"
+                        className="form-control-plaintext"
+                        id="floatingPlaintextInput"
+                        value={horaFini}
+                        onChange={(e) => setVacio(e.target.value)}
+                        disabled
+                      />
+                      <label htmlFor="floatingPlaintextInput">Hora Final</label>
                     </div>
+                  </div>
                 </div>
                 <div className="row justify-content-center">
                   <div className="col-4">
@@ -119,7 +149,9 @@ function ModalRegistros({
                         onChange={(e) => setVacio(e.target.value)}
                         disabled
                       />
-                      <label htmlFor="floatingPlaintextInput">Aula de clase</label>
+                      <label htmlFor="floatingPlaintextInput">
+                        Aula de clase
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -133,7 +165,16 @@ function ModalRegistros({
               >
                 Cerrar
               </button>
-              <button type="button" className="btn btn-primary" disabled>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => {
+                  
+                  RegistrarClase();
+                  router.push("/listadoClases");
+                }}
+                data-bs-dismiss="modal"
+              >
                 ¿Está seguro?
               </button>
             </div>
