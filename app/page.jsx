@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import swal from 'sweetalert';
 
 function IndexPage() {
   const router = useRouter();
@@ -29,7 +30,13 @@ function IndexPage() {
 
     }else{
 
-      console.log("ERROR")
+      swal({
+        title: "Usurio o contraseña incorrecta", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 3000
+      });
 
     }
 

@@ -24,7 +24,7 @@ async function buscarProfe(cedula) {
       title: "No se encontró el profesor", 
       button: false,
       icon: "error",
-      text: "Verifique la información y vuelva a intentarlo",
+      text: "Verifique la información e intenté nuevamente",
       timer: 3000
     });
 
