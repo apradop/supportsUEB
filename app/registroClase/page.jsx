@@ -2,8 +2,9 @@
 
 import RegistrarClase from "@/components/RegistrarClase";
 import { useState } from "react";
+import swal from 'sweetalert';
 
-async function login(cedula) {
+async function buscarProfe(cedula) {
   const res = await fetch("/api/buscarProfe", {
     method: "POST",
     body: JSON.stringify({ cedula }),
@@ -14,8 +15,19 @@ async function login(cedula) {
 
   const dat = await res.json();
   const data = dat[0];
+
   if (dat.length !== 0) {
     return data;
+  }else{
+
+    swal({
+      title: "No se encontró el profesor", 
+      button: false,
+      icon: "error",
+      text: "Verifique la información y vuelva a intentarlo",
+      timer: 3000
+    });
+
   }
 }
 
@@ -43,7 +55,7 @@ function RegisterPage() {
       <button
         className="btn btn-primary mb-3"
         onClick={async () => {
-          login(cedula).then((data) => setDatos(data));
+          buscarProfe(cedula).then((data) => setDatos(data));
         }}
       >
         Buscar

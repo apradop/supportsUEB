@@ -68,7 +68,7 @@ function RegistrarClase({ profes, llave }) {
               disabled={isDisabled}
             ></input>
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
-              Programa académico
+              Programa académico / Área
             </label>
             <input
               className="form-control"
@@ -79,7 +79,7 @@ function RegistrarClase({ profes, llave }) {
               disabled={isDisabled}
             ></input>
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
-              Materia
+              Materia / Depedencia
             </label>
             <input
               className="form-control"
