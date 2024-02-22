@@ -11,7 +11,7 @@ function RegistrarClase({ profes, llave }) {
   const [salon, setSalon] = useState("");
   const [horaIni, setHoraIni] = useState("");
   const [horaFini, setHoraFini] = useState("");
-  const [herramientas, setHerramientas] = useState("");
+  const [herramientas, setHerramientas] = useState({});
   const [observaciones, setObservaciones] = useState("");
   const [isDisabled, setIsDisabled] = useState(false)
   const keyProfe = llave;
@@ -138,7 +138,8 @@ function RegistrarClase({ profes, llave }) {
 
               const options = [...e.target.selectedOptions];
               const values = options.map(option => option.value);
-              setHerramientas(values.toString());
+              console.log({values});
+              setHerramientas({values});
 
             }}>
               <option>ARGIS</option>
