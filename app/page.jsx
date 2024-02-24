@@ -24,9 +24,14 @@ function IndexPage() {
     const data = await res.json()
     console.log(data)
 
-    if(data === true){
+    if(data.boolean === true){
 
-      router.push("/registroClase")
+      if(data.rows[0].rol === "admin"){
+        router.push("/admin");
+      }
+      else{
+        router.push("/listadoClases");
+      }
 
     }else{
 

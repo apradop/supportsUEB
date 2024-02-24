@@ -15,7 +15,7 @@ export async function POST(request) {
     if (rows.length != 0) {
       boolean = true;
     }
-    return new NextResponse(boolean);
+    return new NextResponse(JSON.stringify({ boolean , rows }));
   } catch (err) {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
