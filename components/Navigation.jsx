@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 function Navigation() {
+
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-primary">
@@ -19,6 +21,11 @@ function Navigation() {
           </button>
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+                <Link className="nav-link" href="/registroSoporte">
+                  Registrar Soporte
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" href="/registroClase">
                   Registrar Clase

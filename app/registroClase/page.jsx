@@ -1,8 +1,10 @@
 "use client";
 
 import RegistrarClase from "@/components/RegistrarClase";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import swal from 'sweetalert';
+import { useRouter } from "next/navigation";
+
 
 async function buscarProfe(cedula) {
   const res = await fetch("/api/buscarProfe", {
@@ -35,6 +37,11 @@ function RegisterPage() {
   const [cedula, setCedula] = useState("0");
   const [datos, setDatos] = useState({});
   const [isReady, setIsReady] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+      
+  }, []);
 
   return (
     <div>

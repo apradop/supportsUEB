@@ -1,11 +1,17 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import swal from 'sweetalert';
 
 function IndexPage() {
   const router = useRouter();
   const [user, setUser] = useState("");
+
+  useEffect(() => {
+
+    window.sessionStorage.removeItem("user");
+
+  }, []);
 
  async function login(e) {
     e.preventDefault();
@@ -28,9 +34,11 @@ function IndexPage() {
 
       if(data.rows[0].rol === "admin"){
         router.push("/admin");
+        window.sessionStorage.setItem("user", data.rows[0].username);
       }
       else{
         router.push("/listadoClases");
+        window.sessionStorage.setItem("user", data.rows[0].username);
       }
 
     }else{
