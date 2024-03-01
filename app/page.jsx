@@ -34,11 +34,11 @@ function IndexPage() {
 
       if(data.rows[0].rol === "admin"){
         router.push("/admin");
-        window.sessionStorage.setItem("user", data.rows[0].username);
+        window.sessionStorage.setItem("user", data.rows[0].rol);
       }
       else{
         router.push("/listadoClases");
-        window.sessionStorage.setItem("user", data.rows[0].username);
+        window.sessionStorage.setItem("user", data.rows[0].rol);
       }
 
     }else{

@@ -4,6 +4,7 @@ import RegistrarClase from "@/components/RegistrarClase";
 import { useState, useEffect } from "react";
 import swal from 'sweetalert';
 import { useRouter } from "next/navigation";
+import { useSession } from "@/hooks/useSession";
 
 
 async function buscarProfe(cedula) {
@@ -39,7 +40,13 @@ function RegisterPage() {
   const [isReady, setIsReady] = useState(false);
   const router = useRouter();
 
+  const { useSessionAdmin, useSessionUser } = useSession();
+
   useEffect(() => {
+
+    if(useSessionUser() === false){
+      router.push("/");
+    }
       
   }, []);
 

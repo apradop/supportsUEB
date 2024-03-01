@@ -1,8 +1,10 @@
 "use client";
 
 import RegistrarSoporte from "@/components/RegistrarSoporte";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import swal from 'sweetalert';
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
 
 async function buscarProfe(cedula) {
   const res = await fetch("/api/buscarProfe", {
@@ -35,6 +37,16 @@ function RegisterPage() {
   const [cedula, setCedula] = useState("0");
   const [datos, setDatos] = useState({});
   const [isReady, setIsReady] = useState(false);
+  const { useSessionAdmin, useSessionUser } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+
+    if(useSessionUser() === false){
+      router.push("/");
+    }
+      
+  }, []);
 
   return (
     <div>
