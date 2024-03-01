@@ -5,7 +5,7 @@ export async function GET() {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT * FROM clases`
+      `UPDATE clases SET estado = 'finalizada' WHERE id = "${data.id}"`
     );
     //console.log(rows);
 
@@ -20,9 +20,10 @@ export async function GET() {
 
 export async function POST(request) {
   const conn = await pool.getConnection();
+  const data = await request.json();
   try {
     const rows = await conn.query(
-      `SELECT * FROM clases`
+      `UPDATE clases SET estado = 'finalizada' WHERE id ="${data.id}"`
     );
     //console.log(rows);
 

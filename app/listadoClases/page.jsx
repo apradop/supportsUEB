@@ -2,7 +2,7 @@
 import ListadoClases from "@/components/ListadoClase"
 
 async function tabla() {
-  const res = await fetch("http://localhost:3000/api/listados", {
+  const res = await fetch("http://localhost:3000/api/listadoClases", {
     method: "GET",
     cache: "default",
     mode: "cors"
@@ -15,8 +15,20 @@ async function tabla() {
   
 } 
 
+async function actualizar(e){
+  const id = e.target.id.value;
+
+  const res = await fetch('api/cambiarEstado', {
+    method: "POST",
+    body: JSON.stringify({id}),
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+}
+
 async function consulta() {
-  const res = await fetch('http://localhost:3000/api/listados', {
+  const res = await fetch('http://localhost:3000/api/listadoClases', {
     method: "POST",
     body: JSON.stringify({"mensaje":"mensaje"}),
     headers: {
@@ -42,7 +54,7 @@ async function page(){
         <>
 
         <h1>
-            Listado de Clasess
+            Listado de Clases
         </h1>
 
         <button type="button" className="btn btn-primary">Actualizar</button>
