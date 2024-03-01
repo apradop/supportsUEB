@@ -132,20 +132,20 @@ function RegistrarClase({ profes, llave }) {
           </label>
           <div className="col">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadio1"
               value="No"
               onChange={() => setIsDisabledObs(false)}
             />
-            <label className="form-check-label" for="inlineRadio1">
+            <label className="form-check-label" htmlFor="inlineRadio1">
               NO
             </label>
           </div>
           <div className="col">
           <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadio1"
@@ -153,7 +153,7 @@ function RegistrarClase({ profes, llave }) {
               onChange={() => setIsDisabledObs(true)}
               disabled={isDisabledBoton}
             />
-            <label className="form-check-label" for="inlineRadio1">
+            <label className="form-check-label" htmlFor="inlineRadio1">
               SI
             </label>
           </div>

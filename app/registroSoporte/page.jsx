@@ -38,7 +38,7 @@ function RegisterPage() {
 
   return (
     <div>
-      <h1>Registrar salón</h1>
+      <h1>Registrar Soporte</h1>
       <div className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">
           Cédula
