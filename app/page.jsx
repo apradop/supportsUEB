@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState , useEffect} from "react";
 import swal from 'sweetalert';
+import NavigationIni from "@/components/NavigationIni";
 
 function IndexPage() {
   const router = useRouter();
@@ -57,6 +58,7 @@ function IndexPage() {
 
   return (
     <>
+    <NavigationIni />
       <form onSubmit={login}>
         <section className="vh-100">
           <div className="container py-5 h-100">

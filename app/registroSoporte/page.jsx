@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import swal from 'sweetalert';
 import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/navigation";
+import Navigation from "@/components/Navigation";
 
 async function buscarProfe(cedula) {
   const res = await fetch("/api/buscarProfe", {
@@ -50,6 +51,7 @@ function RegisterPage() {
 
   return (
     <div>
+      <Navigation />
       <h1>Registrar Soporte</h1>
       <div className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">
