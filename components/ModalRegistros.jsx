@@ -14,6 +14,12 @@ function ModalRegistros({
   const [vacio, setVacio] = useState("");
   const router = useRouter();
 
+  const date = Date.now();
+  const hoy =  new Date(date);
+  console.log(hoy.toLocaleDateString());
+
+  const fecha = hoy.toLocaleDateString();
+
   useEffect(() => {});
 
   function imprimir(){
@@ -32,7 +38,7 @@ function ModalRegistros({
   async function RegistrarClase() {
     const res = await fetch("/api/registrarClase", {
       method: "POST",
-      body: JSON.stringify({ nombre, programa, materia, salon, horaIni, horaFini, herramientas, observaciones }),
+      body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, herramientas, observaciones }),
       headers: {
         "Content-Type": "application/json",
       },
