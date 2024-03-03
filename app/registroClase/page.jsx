@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import swal from 'sweetalert';
 import { useRouter } from "next/navigation";
 import { useSession } from "@/hooks/useSession";
+import Navigation from "@/components/Navigation";
 
 
 async function buscarProfe(cedula) {
@@ -51,7 +52,9 @@ function RegisterPage() {
   }, []);
 
   return (
-    <div>
+    <>
+     <Navigation />
+    <div className="container">
       <h1>Registrar salón</h1>
       <div className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">
@@ -78,6 +81,7 @@ function RegisterPage() {
         <RegistrarClase profes={datos} llave={cedula} />
       </div>
     </div>
+    </>
   );
 }
 

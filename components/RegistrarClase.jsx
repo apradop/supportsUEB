@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ModalRegistros from "@/components/ModalRegistros"
+import Navigation from "@/components/Navigation";
 
 
 function RegistrarClase({ profes, llave }) {
@@ -52,6 +53,7 @@ function RegistrarClase({ profes, llave }) {
 
 
   return (
+    <>
     <div className="container">
       <div>
         <div className="row">
@@ -220,6 +222,7 @@ function RegistrarClase({ profes, llave }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

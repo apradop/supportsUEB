@@ -50,8 +50,9 @@ function RegisterPage() {
   }, []);
 
   return (
-    <div>
-      <Navigation />
+    <>
+     <Navigation />
+    <div className="container">
       <h1>Registrar Soporte</h1>
       <div className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">
@@ -78,6 +79,7 @@ function RegisterPage() {
         <RegistrarSoporte profes={datos} llave={cedula} />
       </div>
     </div>
+    </>
   );
 }
 

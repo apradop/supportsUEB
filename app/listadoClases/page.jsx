@@ -1,5 +1,6 @@
 "use client";
 import ListadoClases from "@/components/ListadoClase"
+import Navigation from "@/components/Navigation";
 
 async function tabla() {
   const res = await fetch("http://localhost:3000/api/listadoClases", {
@@ -52,7 +53,8 @@ async function page(){
   
     return (
         <>
-
+        <Navigation />
+        <div className="container">
         <h1>
             Listado de Clases
         </h1>
@@ -78,7 +80,7 @@ async function page(){
       <ListadoClases clases = {clases}/>
   </tbody>
 </table>
-
+</div>
 </>
     )
 
