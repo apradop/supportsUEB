@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import ModalRegistros from "@/components/ModalRegistros";
 
-function RegistrarClase({ profes, llave }) {
+function RegistrarSoporte({ profes, llave }) {
   const [nombre, setNombre] = useState("");
   const [programa, setPrograma] = useState("");
   const [materia, setMateria] = useState("");
@@ -193,4 +193,4 @@ function RegistrarClase({ profes, llave }) {
   );
 }
 
-export default RegistrarClase;
+export default RegistrarSoporte;

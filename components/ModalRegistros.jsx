@@ -35,17 +35,59 @@ function ModalRegistros({
 
   }
 
+  function verificarHora() {
+    if (horaIni > horaFini) {
+      swal({
+        title: "La hora Inicial no puede ser mayor a la hora final", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 2000
+      });
+
+      return false;
+
+    }
+
+    return true;
+  }
+
+  function verificarEspacios() {
+
+    if (nombre === "" || programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" || herramientas === "" ) {
+      swal({
+        title: "Todos los campos son obligatorios", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 2000
+      });
+
+      return false;
+    }
+
+    return true;
+
+  }
+
   async function RegistrarClase() {
-    const res = await fetch("/api/registrarClase", {
-      method: "POST",
-      body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, herramientas, observaciones }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
 
+    if(verificarHora() === true && verificarEspacios() === true){
 
-    const data = await res.json();
+      const res = await fetch("/api/registrarClase", {
+        method: "POST",
+        body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, herramientas, observaciones }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+  
+      const data = await res.json();
+
+      router.push("/listadoClases");
+      
+    }
   
   }
 
@@ -177,7 +219,6 @@ function ModalRegistros({
                 onClick={() => {
                   
                   RegistrarClase();
-                  router.push("/listadoClases");
                 }}
                 data-bs-dismiss="modal"
               >
