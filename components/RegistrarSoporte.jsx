@@ -3,20 +3,25 @@
 import { useEffect, useState } from "react";
 import ModalSoporte from "@/components/ModalSoporte";
 
+
 function RegistrarSoporte({ profes, llave }) {
   const [nombre, setNombre] = useState("");
+  const [nombreTec, setNombreTec] = useState("");
   const [programa, setPrograma] = useState("");
   const [materia, setMateria] = useState("");
   const [salon, setSalon] = useState("");
   const [horaIni, setHoraIni] = useState("");
   const [horaFini, setHoraFini] = useState("");
   const [observaciones, setObservaciones] = useState("");
+  const [estado, setEstado] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [isDisabledObs, setIsDisabledObs] = useState(true);
   const [isDisabledBoton, setIsDisabledBoton] = useState(false);
   const keyProfe = llave;
+  const [data, setData] = useState({});
 
   useEffect(() => {
+
     if (
       profes !== undefined &&
       profes !== null &&
@@ -49,6 +54,7 @@ function RegistrarSoporte({ profes, llave }) {
     setIsDisabledObs(true);
   }
 
+
   return (
     <div className="container">
       <div>
@@ -57,9 +63,13 @@ function RegistrarSoporte({ profes, llave }) {
             <label htmlFor="exampleFormControlInput1" className="form-label">
               Técnico
             </label>
-            <select class="form-select" aria-label="Default select example">
-              <option selected></option>
-            </select>
+            <input
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              value={nombreTec}
+              onChange={(e) => setNombreTec(e.target.value)}
+            ></input>
           </div>
         </div>
         <div className="row">
@@ -147,7 +157,8 @@ function RegistrarSoporte({ profes, llave }) {
               name="inlineRadioOptions"
               id="inlineRadio1"
               value="No"
-              onChange={() => setIsDisabledObs(false)}
+              onChange={(e) => {setIsDisabledObs(false)
+              setEstado(e.target.value)}}
             />
             <label className="form-check-label" htmlFor="inlineRadio1">
               NO
@@ -159,8 +170,9 @@ function RegistrarSoporte({ profes, llave }) {
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadio1"
-              value="No"
-              onChange={() => setIsDisabledObs(true)}
+              value="Si"
+              onChange={(e) => {setIsDisabledObs(true)
+              setEstado(e.target.value)}}
               disabled={isDisabledBoton}
             />
             <label className="form-check-label" htmlFor="inlineRadio1">
@@ -189,12 +201,14 @@ function RegistrarSoporte({ profes, llave }) {
             ></textarea>
             <ModalSoporte
               nombre={nombre}
+              nombreTec={nombreTec}
               programa={programa}
               materia={materia}
               salon={salon}
               horaFini={horaFini}
               horaIni={horaIni}
               observaciones={observaciones}
+              estado = {estado}
             />
           </div>
         </div>

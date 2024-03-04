@@ -5,32 +5,6 @@ import { useState, useEffect } from "react";
 import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/navigation";
 
-async function tabla() {
-  const res = await fetch("http://localhost:3000/api/listadoClases", {
-    method: "GET",
-    cache: "default",
-    mode: "cors"
-  });
-
-  //console.log(res);
-  const dat = await res.json();
-  //console.log(dat);
-  return (dat);
-  
-} 
-
-async function actualizar(e){
-  const id = e.target.id.value;
-
-  const res = await fetch('api/cambiarEstado', {
-    method: "POST",
-    body: JSON.stringify({id}),
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-}
-
 async function consulta() {
   const res = await fetch('http://localhost:3000/api/listadoClases', {
     method: "POST",
@@ -51,7 +25,7 @@ async function consulta() {
  
 async function page(){
 
-  const { useSessionAdmin, useSessionUser } = useSession();
+  const { useSessionUser } = useSession();
   const router = useRouter();
 
   useEffect(() => {

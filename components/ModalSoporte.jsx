@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { El_Messiri } from "next/font/google";
 
 function ModalRegistros({
   nombre,
+  nombreTec,
   programa,
   materia,
   salon,
@@ -10,6 +12,7 @@ function ModalRegistros({
   horaFini,
   herramientas,
   observaciones,
+  estado
 }) {
   const [vacio, setVacio] = useState("");
   const router = useRouter();
@@ -30,8 +33,8 @@ function ModalRegistros({
     console.log(salon)
     console.log(horaIni)
     console.log(horaFini)
-    console.log(herramientas)
     console.log(observaciones)
+    console.log(estado)
 
   }
 
@@ -54,7 +57,7 @@ function ModalRegistros({
 
   function verificarEspacios() {
 
-    if (nombre === "" || programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" || herramientas === "" ) {
+    if (nombre === ""  ||  nombreTec === ""  || programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" ) {
       swal({
         title: "Todos los campos son obligatorios", 
         button: false,
@@ -64,19 +67,31 @@ function ModalRegistros({
       });
 
       return false;
+    }else if (observaciones === "" && estado === "No") {
+
+      swal({
+        title: "Todos los campos son obligatorios", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 2000
+      });
+
+      return false;
+
     }
 
     return true;
 
   }
 
-  async function RegistrarClase() {
+  async function RegistrarSoporte() {
 
     if(verificarHora() === true && verificarEspacios() === true){
 
-      const res = await fetch("/api/registrarClase", {
+      const res = await fetch("/api/registrarSoporte", {
         method: "POST",
-        body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, herramientas, observaciones }),
+        body: JSON.stringify({ nombre, nombreTec , programa, materia, salon, fecha ,horaIni, horaFini, herramientas,estado , observaciones }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -85,8 +100,17 @@ function ModalRegistros({
   
       const data = await res.json();
 
-      router.push("/listadoClases");
+      swal({
+        title: "Se ha creado el soporte correctamente", 
+        button: false,
+        icon: "success",
+        timer: 2000
+      });
       
+      setTimeout(() => {
+        window.location.reload();
+      }, 2100);
+
     }
   
   }
@@ -218,7 +242,7 @@ function ModalRegistros({
                 className="btn btn-primary"
                 onClick={() => {
                   
-                  RegistrarClase();
+                  RegistrarSoporte();
                 }}
                 data-bs-dismiss="modal"
               >

@@ -34,11 +34,12 @@ async function buscarProfe(cedula) {
   }
 }
 
-function RegisterPage() {
+
+ function RegisterPage() {
+
   const [cedula, setCedula] = useState("0");
   const [datos, setDatos] = useState({});
-  const [isReady, setIsReady] = useState(false);
-  const { useSessionAdmin, useSessionUser } = useSession();
+  const { useSessionUser } = useSession();
   const router = useRouter();
 
   useEffect(() => {
