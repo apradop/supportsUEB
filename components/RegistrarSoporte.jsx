@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ModalRegistros from "@/components/ModalRegistros";
+import ModalSoporte from "@/components/ModalSoporte";
 
-function RegistrarClase({ profes, llave }) {
+function RegistrarSoporte({ profes, llave }) {
   const [nombre, setNombre] = useState("");
   const [programa, setPrograma] = useState("");
   const [materia, setMateria] = useState("");
@@ -52,6 +52,16 @@ function RegistrarClase({ profes, llave }) {
   return (
     <div className="container">
       <div>
+        <div className="row">
+          <div className="col">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
+              Técnico
+            </label>
+            <select class="form-select" aria-label="Default select example">
+              <option selected></option>
+            </select>
+          </div>
+        </div>
         <div className="row">
           <div className="col">
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
@@ -144,7 +154,7 @@ function RegistrarClase({ profes, llave }) {
             </label>
           </div>
           <div className="col">
-          <input
+            <input
               className="form-check-input"
               type="radio"
               name="inlineRadioOptions"
@@ -177,7 +187,7 @@ function RegistrarClase({ profes, llave }) {
               }}
               disabled={isDisabledObs}
             ></textarea>
-            <ModalRegistros
+            <ModalSoporte
               nombre={nombre}
               programa={programa}
               materia={materia}
@@ -193,4 +203,4 @@ function RegistrarClase({ profes, llave }) {
   );
 }
 
-export default RegistrarClase;
+export default RegistrarSoporte;
