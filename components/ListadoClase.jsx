@@ -6,6 +6,9 @@ import ListadoClaseDetalle from "./ListadoClaseDetalle";
 function listadoClases ({clases}) {
 
     //console.log(clases);
+    const date = Date.now();
+    const hoy =  new Date(date);
+    //console.log(hoy.toLocaleDateString());
 
 
 
@@ -15,7 +18,7 @@ function listadoClases ({clases}) {
             
             <tr key={clase.id}>
             <th scope="row">{index+1}</th>
-            <th scope="row">15/11/2023</th>
+            <th scope="row">{clase.fecha}</th>
             <td> {clase.horai}</td>
             <td> {clase.horaf}</td>
             <td  >{clase.salon}</td>
