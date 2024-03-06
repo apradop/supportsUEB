@@ -1,10 +1,18 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState , useEffect} from "react";
+import swal from 'sweetalert';
+import NavigationIni from "@/components/NavigationIni";
 
 function IndexPage() {
   const router = useRouter();
   const [user, setUser] = useState("");
+
+  useEffect(() => {
+
+    window.sessionStorage.removeItem("user");
+
+  }, []);
 
  async function login(e) {
     e.preventDefault();
@@ -23,13 +31,26 @@ function IndexPage() {
     const data = await res.json()
     console.log(data)
 
-    if(data === true){
+    if(data.boolean === true){
 
-      router.push("/registroClase")
+      if(data.rows[0].rol === "admin"){
+        router.push("/admin");
+        window.sessionStorage.setItem("user", data.rows[0].rol);
+      }
+      else{
+        router.push("/listadoClases");
+        window.sessionStorage.setItem("user", data.rows[0].rol);
+      }
 
     }else{
 
-      console.log("ERROR")
+      swal({
+        title: "Usurio o contraseña incorrecta", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 3000
+      });
 
     }
 
@@ -37,6 +58,7 @@ function IndexPage() {
 
   return (
     <>
+    <NavigationIni />
       <form onSubmit={login}>
         <section className="vh-100">
           <div className="container py-5 h-100">

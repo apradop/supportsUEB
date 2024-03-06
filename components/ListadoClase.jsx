@@ -1,27 +1,36 @@
-function listadoClases ({ users }) {
+"use client";
+
+import { useEffect, useState } from "react";
+import ListadoClaseDetalle from "./ListadoClaseDetalle";
+
+function listadoClases ({clases}) {
+
+    //console.log(clases);
+    const date = Date.now();
+    const hoy =  new Date(date);
+    //console.log(hoy.toLocaleDateString());
+
+
 
     return (
-
         <>
-        {users.map((usua) => 
-        <tr>
+        {clases.map((clase,index) => (
             
-        <th scope="row">{usua.id}</th>
-        <td>{usua.first_name}</td>
-        <td>{usua.first_name}</td>
-        <td>{usua.last_name}</td>
-        <td>{usua.email}</td>
-        <td>
-  
-        <button type="button" className="btn btn-primary">Información</button>
-  
-        <button type="button" className="btn btn-success">Finalizar</button>
-  
-        </td>
-      </tr>
-            )}
-        
-
+            <tr key={clase.id}>
+            <th scope="row">{index+1}</th>
+            <th scope="row">{clase.fecha}</th>
+            <td> {clase.horai}</td>
+            <td> {clase.horaf}</td>
+            <td  >{clase.salon}</td>
+            <td >{clase.responsable}</td>
+            <td >{clase.materia}</td>
+            <td>
+      
+            <ListadoClaseDetalle id={clase.id} docente={clase.responsable} programa={clase.programa} materia={clase.materia} salon={clase.salon} horai={clase.horai} horaf={clase.horaf} programas={clase.programas} observaciones={clase.observaciones} />
+      
+            </td>
+            </tr>
+        ))}
         </>
         
     )

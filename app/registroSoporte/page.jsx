@@ -1,12 +1,11 @@
 "use client";
 
-import RegistrarClase from "@/components/RegistrarClase";
+import RegistrarSoporte from "@/components/RegistrarSoporte";
 import { useState, useEffect } from "react";
 import swal from 'sweetalert';
-import { useRouter } from "next/navigation";
 import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
 import Navigation from "@/components/Navigation";
-
 
 async function buscarProfe(cedula) {
   const res = await fetch("/api/buscarProfe", {
@@ -35,13 +34,13 @@ async function buscarProfe(cedula) {
   }
 }
 
-function RegisterPage() {
+
+ function RegisterPage() {
+
   const [cedula, setCedula] = useState("0");
   const [datos, setDatos] = useState({});
-  const [isReady, setIsReady] = useState(false);
+  const { useSessionUser } = useSession();
   const router = useRouter();
-
-  const { useSessionAdmin, useSessionUser } = useSession();
 
   useEffect(() => {
 
@@ -55,7 +54,7 @@ function RegisterPage() {
     <>
      <Navigation />
     <div className="container">
-      <h1>Registrar salón</h1>
+      <h1>Registrar Soporte</h1>
       <div className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">
           Cédula
@@ -78,7 +77,7 @@ function RegisterPage() {
         Buscar
       </button>
       <div className="">
-        <RegistrarClase profes={datos} llave={cedula} />
+        <RegistrarSoporte profes={datos} llave={cedula} />
       </div>
     </div>
     </>

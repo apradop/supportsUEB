@@ -1,12 +1,10 @@
 "use client";
-import ListadoClases from "@/components/ListadoClase"
+import ListadoSoporte from "@/components/ListadoSoporte"
 import Navigation from "@/components/Navigation";
-import { useState, useEffect } from "react";
-import { useSession } from "@/hooks/useSession";
-import { useRouter } from "next/navigation";
+
 
 async function consulta() {
-  const res = await fetch('http://localhost:3000/api/listadoClases', {
+  const res = await fetch('http://localhost:3000/api/listadoSoportes', {
     method: "POST",
     body: JSON.stringify({"mensaje":"mensaje"}),
     headers: {
@@ -25,18 +23,7 @@ async function consulta() {
  
 async function page(){
 
-  const { useSessionUser } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-
-    if(useSessionUser() === false){
-      router.push("/");
-    }
-      
-  }, []);
-
-  const clases = await consulta();
+  const soportes = await consulta();
   //console.log(clases);
   
     return (
@@ -44,12 +31,11 @@ async function page(){
         <Navigation />
         <div className="container">
         <h1>
-            Listado de Clases
+            Listado de Soportes
         </h1>
 
-        <button type="button" className="btn btn-primary">Actualizar</button>
+        <button type="button" className="btn btn-primary">Descargar Reporte</button>
 
-        <button type="button" className="btn btn-success">Buscar</button>
 
         <table className="table table-hover">
   <thead>
@@ -61,12 +47,11 @@ async function page(){
       <th scope="col">Salón</th>
       <th scope="col">Responsable</th>
       <th scope="col">Materia</th>
-      <th scope="col">Gestión</th>
     </tr>
-  </thead>
-  <tbody>
-      <ListadoClases clases = {clases}/>
+    <tbody>
+      <ListadoSoporte soportes = {soportes}/>
   </tbody>
+  </thead>
 </table>
 </div>
 </>
