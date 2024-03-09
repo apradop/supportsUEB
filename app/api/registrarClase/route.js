@@ -14,6 +14,6 @@ export async function POST(request) {
     console.log(err)
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
-    conn.end();
+    conn.destroy()
   }
 }

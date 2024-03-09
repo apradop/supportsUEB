@@ -2,8 +2,9 @@ import { NextResponse } from "next/server";
 import { pool } from "@/db";
 
 export async function GET() {
-  const conn = await pool.getConnection();
+  let conn;
   try {
+    conn = await pool.getConnection();
     const rows = await conn.query(
       `SELECT * FROM clases WHERE estado = 'activa'`
     );
@@ -15,6 +16,8 @@ export async function GET() {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
     conn.end();
+    conn.close();
+    conn.destroy()
   }
 }
 
@@ -32,5 +35,7 @@ export async function POST(request) {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
     conn.end();
+    conn.close();
+    conn.destroy();
   }
 }

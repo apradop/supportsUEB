@@ -1,6 +1,9 @@
 "use client";
 import ListadoSoporte from "@/components/ListadoSoporte"
 import Navigation from "@/components/Navigation";
+import { useState, useEffect } from "react";
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
 
 
 async function consulta() {
@@ -23,6 +26,18 @@ async function consulta() {
  
 async function page(){
 
+
+  const { useSessionAdmin } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+
+    if(useSessionAdmin() === false){
+      router.push("/");
+    }
+      
+  }, []);
+
   const soportes = await consulta();
   //console.log(clases);
   
@@ -37,7 +52,7 @@ async function page(){
         <button type="button" className="btn btn-primary">Descargar Reporte</button>
 
 
-        <table className="table table-hover">
+        <table className="table">
   <thead>
     <tr>
     <th scope="col">N°</th>

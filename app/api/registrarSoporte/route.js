@@ -4,6 +4,7 @@ import {pool} from "@/db"
 export async function POST(request) {
   const conn = await pool.getConnection();
   const data = await request.json()
+  console.log(data)
   const datos = [data.nombreTec, data.nombre, data.programa, data.materia, data.salon, data.fecha , data.horaIni, data.horaFini, data.estado, data.observaciones]
   console.log(datos)
   try {
@@ -15,5 +16,7 @@ export async function POST(request) {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
     conn.end();
+    conn.close();
+    conn.destroy()
   }
 }

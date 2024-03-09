@@ -7,11 +7,13 @@ export async function GET() {
     const rows = await conn.query(
       `SELECT * FROM tecnico`
     );
-    conn.end();
+    
     return new NextResponse(JSON.stringify(rows));
   } catch (err) {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
     conn.end();
+    conn.close();
+    conn.destroy()
   }
 }

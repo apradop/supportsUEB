@@ -11,6 +11,8 @@ export async function GET() {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
     conn.end();
+    conn.close();
+    conn.destroy()
   }
  
 }
@@ -27,5 +29,7 @@ export async function POST(request) {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
     conn.end();
+    conn.close();
+    conn.destroy()
   }
 }

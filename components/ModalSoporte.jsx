@@ -19,8 +19,6 @@ function ModalRegistros({
 
   const date = Date.now();
   const hoy =  new Date(date);
-  console.log(hoy.toLocaleDateString());
-
   const fecha = hoy.toLocaleDateString();
 
   useEffect(() => {});

@@ -8,15 +8,22 @@ import { useEffect, useState } from "react";
 
 function Navigation() {
   const router = useRouter();
-  const { useSessionUser } = useSession();
+  const { useSessionUser, useSessionAdmin } = useSession();
   const [ boleanUser, setBoleanUser ] = useState(false);
 
   
   useEffect(() => {
 
     if(useSessionUser() === false){
-      console.log("No hay sesión");
-      setBoleanUser(false)
+
+      if(useSessionAdmin() === true){
+
+        console.log("Hay sesion Admin");
+        setBoleanUser(false)
+      }else{ 
+        console.log("No hay sesión");
+        setBoleanUser(false)
+      }
     }else{
       console.log("Hay sesión");
       setBoleanUser(true)
@@ -70,11 +77,11 @@ function Navigation() {
       
               :
               <><li className="nav-item">
-                  <Link className="nav-link" href="/registroSoporte">
+                  <Link className="nav-link" href="/listadoSoportes">
                     Listado de Soportes
                   </Link>
                 </li><li className="nav-item">
-                    <Link className="nav-link" href="/registroClase">
+                    <Link className="nav-link" href="/listadoClaseFin">
                       Listado de clases
                     </Link>
                   </li></>

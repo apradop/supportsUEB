@@ -8,6 +8,7 @@ export async function POST(request) {
 
   console.log(data);
   try {
+    
     const rows = await conn.query(
       `SELECT * FROM usuarios WHERE username="${data.username}"AND password="${data.password}"`
     );
@@ -20,5 +21,7 @@ export async function POST(request) {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
     conn.end();
+    conn.close();
+    conn.destroy()
   }
 }

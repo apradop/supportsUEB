@@ -1,20 +1,22 @@
 import { NextResponse } from "next/server";
-import { pool } from "@/db";
+import { pool , imprimir } from "@/db";
 
 
 export async function POST(request) {
-  const conn = await pool.getConnection();
+  let conn;
   try {
+    conn = await pool.getConnection();
     const rows = await conn.query(
       `SELECT * FROM soportes `
     );
-    //console.log(rows);
-
-    
+  
+    imprimir();
     return new NextResponse(JSON.stringify(rows));
   } catch (err) {
     return new NextResponse(JSON.stringify({ error: err.message }));
   } finally {
     conn.end();
+    conn.close();
+    conn.destroy()
   }
 }
