@@ -52,7 +52,6 @@ async function page(){
     <tbody>
       <ListadoClasesFin clases = {clases}/>
   </tbody>
- 
 </table>
 </div>
 </>

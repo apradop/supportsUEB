@@ -19,6 +19,21 @@ function ModalRegistros({
   console.log(hoy.toLocaleDateString());
 
   const fecha = hoy.toLocaleDateString();
+  const hora = hoy.getTime();
+  const resutl = new Date(hora);
+  let horaIniReal= "";
+
+    if (resutl.getHours() < 10) {
+      horaIniReal += "0" + resutl.getHours() + ":";
+    }else{  
+      horaIniReal += resutl.getHours() + ":";
+    }
+    
+    if (resutl.getMinutes() < 10) {
+      horaIniReal += "0" + resutl.getMinutes() + ":";
+    }else{
+      horaIniReal += resutl.getMinutes();
+    }
 
   useEffect(() => {});
 
@@ -30,6 +45,7 @@ function ModalRegistros({
     console.log(salon)
     console.log(horaIni)
     console.log(horaFini)
+    console.log(horaIniReal)
     console.log(herramientas)
     console.log(observaciones)
 
@@ -76,7 +92,7 @@ function ModalRegistros({
 
       const res = await fetch("/api/registrarClase", {
         method: "POST",
-        body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, herramientas, observaciones }),
+        body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, horaIniReal,herramientas, observaciones }),
         headers: {
           "Content-Type": "application/json",
         },
