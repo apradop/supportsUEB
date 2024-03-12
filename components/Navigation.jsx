@@ -70,11 +70,11 @@ function Navigation() {
       
               :
               <><li className="nav-item">
-                  <Link className="nav-link" href="/registroSoporte">
+                  <Link className="nav-link" href="/listadoSoporte">
                     Listado de Soportes
                   </Link>
                 </li><li className="nav-item">
-                    <Link className="nav-link" href="/registroClase">
+                    <Link className="nav-link" href="/listadoClasesFin">
                       Listado de clases
                     </Link>
                   </li></>
