@@ -48,10 +48,11 @@ async function page(){
       <th scope="col">Responsable</th>
       <th scope="col">Materia</th>
     </tr>
+    </thead>
     <tbody>
       <ListadoClasesFin clases = {clases}/>
   </tbody>
-  </thead>
+ 
 </table>
 </div>
 </>
