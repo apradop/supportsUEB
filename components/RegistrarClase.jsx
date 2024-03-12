@@ -16,6 +16,9 @@ function RegistrarClase({ profes, llave }) {
   const [observaciones, setObservaciones] = useState("");
   const [isDisabled, setIsDisabled] = useState(false)
   const keyProfe = llave;
+  const horafini = new Date();
+  const hora = new Date();
+  let boolean = true;
   
 
   useEffect(() => {
@@ -24,20 +27,58 @@ function RegistrarClase({ profes, llave }) {
       profes !== null &&
       Object.keys(profes).length > 0
     ) {
-      setProfesor();
+      for (var i = 0; i < Object.keys(profes).length; i++) {
+
+        console.log(profes[i].Fecha + " " + profes[i].HoraInicial)
+        let horaini = new Date(profes[i].Fecha + " " + profes[i].HoraInicial)
+        let horafini = new Date(profes[i].Fecha + " " + profes[i].HoraFinal)
+
+        console.log(horaini.getTime())
+        console.log(horafini.getTime())
+        console.log(hora.getTime())
+        if (horaini.getTime()  <= hora.getTime()  && horafini.getTime() >= hora.getTime()) {
+          console.log("entro")
+          setProfesor(profes[i]);
+          boolean = false;
+        }else{
+          setVacio();
+        }
+      }
+      mensaje(boolean);
+      
     } else {
       setVacio();
-      
+      swal({
+        title: "No se encontró al docente", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 3000
+      });
     }
   }, [profes]);
 
-  function setProfesor() {
-    setNombre(profes.NombreDocente);
-    setPrograma(profes.Programa);
-    setMateria(profes.Materia);
-    setSalon(profes.EspacioFisico);
-    setHoraIni(profes.HoraInicial);
-    setHoraFini(profes.HoraFinal);
+  function mensaje(boolean) { 
+    if(boolean){
+      swal({
+        title: "El docente no tiene clase a esta hora", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 3000
+      });
+      
+    }
+
+  }
+
+  function setProfesor(profe) {
+    setNombre(profe.NombreDocente);
+    setPrograma(profe.Programa);
+    setMateria(profe.Materia);
+    setSalon(profe.EspacioFisico);
+    setHoraIni(profe.HoraInicial);
+    setHoraFini(profe.HoraFinal);
     setIsDisabled(true)
   }
 

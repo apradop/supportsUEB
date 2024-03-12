@@ -34,7 +34,7 @@ function IndexPage() {
     if(data.boolean === true){
 
       if(data.rows[0].rol === "admin"){
-        router.push("/admin");
+        router.push("/listadoClasesFin");
         window.sessionStorage.setItem("user", data.rows[0].rol);
       }
       else{
