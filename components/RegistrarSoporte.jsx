@@ -20,18 +20,41 @@ function RegistrarSoporte({ profes, llave }) {
   const keyProfe = llave;
   const [data, setData] = useState({});
 
-  useEffect(() => {
+  const horafini = new Date();
+  const hora = new Date();
+  let boolean = true;
+  
 
+  useEffect(() => {
     if (
       profes !== undefined &&
       profes !== null &&
       Object.keys(profes).length > 0
     ) {
-      setProfesor();
+      for (var i = 0; i < Object.keys(profes).length; i++) {
+
+        console.log(profes[i].Fecha + " " + profes[i].HoraInicial)
+        let horaini = new Date(profes[i].Fecha + " " + profes[i].HoraInicial)
+        let horafini = new Date(profes[i].Fecha + " " + profes[i].HoraFinal)
+
+        console.log(horaini.getTime())
+        console.log(horafini.getTime())
+        console.log(hora.getTime())
+        if (horaini.getTime()  <= hora.getTime()  && horafini.getTime() >= hora.getTime()) {
+          console.log("entro")
+          setProfesor(profes[i]);
+          boolean = false;
+        }else{
+          setVacio();
+        }
+      }
+      mensaje(boolean);
+      
     } else {
       setVacio();
     }
   }, [profes]);
+
 
   function setProfesor() {
     setNombre(profes.NombreDocente);
@@ -41,6 +64,20 @@ function RegistrarSoporte({ profes, llave }) {
     setHoraIni(profes.HoraInicial);
     setHoraFini(profes.HoraFinal);
     setIsDisabled(true);
+  }
+
+  function mensaje(boolean) { 
+    if(boolean){
+      swal({
+        title: "El docente no tiene clase a esta hora", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 3000
+      });
+      
+    }
+
   }
 
   function setVacio() {

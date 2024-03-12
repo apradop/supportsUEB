@@ -48,13 +48,6 @@ function RegistrarClase({ profes, llave }) {
       
     } else {
       setVacio();
-      swal({
-        title: "No se encontró al docente", 
-        button: false,
-        icon: "error",
-        text: "Verifique la información e intenté nuevamente",
-        timer: 3000
-      });
     }
   }, [profes]);
 
