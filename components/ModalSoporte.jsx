@@ -89,6 +89,10 @@ function ModalRegistros({
 
     if(verificarHora() === true && verificarEspacios() === true){
 
+      if(observaciones === ""){
+        observaciones = "Sin observaciones";
+      }
+
       const res = await fetch("/api/registrarSoporte", {
         method: "POST",
         body: JSON.stringify({ nombre, nombreTec , programa, materia, salon, fecha ,horaIni, horaFini, herramientas,estado , observaciones }),

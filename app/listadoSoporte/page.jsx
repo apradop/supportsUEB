@@ -1,6 +1,7 @@
 "use client";
 import ListadoSoporte from "@/components/ListadoSoporte"
 import Navigation from "@/components/Navigation";
+import useExcel from "@/hooks/useExcel";
 
 
 async function consulta() {
@@ -20,6 +21,34 @@ async function consulta() {
   return (dat);
 }
 
+async function exportToExcel() { 
+
+  const clases = await consulta();
+
+  var arreglo = clases.map((clase) => {
+
+    return {
+      TECNICO : clase.tecnico,
+      RESPONSABLE: clase.responsable,
+      PROGRAMA: clase.programa,
+      MATERIA: clase.materia,
+      SALON: clase.salon,
+      FECHAS: clase.fecha,
+      "HORA INICIAL": clase.horai,
+      "HORA FINAL": clase.horaf,
+      ESTADO: clase.estado,
+      OBSERVACIONES: clase.observaciones,
+    };
+    });
+
+
+  const { useExportToExcel } = useExcel();
+
+  useExportToExcel(arreglo, "ReporteSoportes");
+
+
+}
+
  
 async function page(){
 
@@ -34,7 +63,7 @@ async function page(){
             Listado de Soportes
         </h1>
 
-        <button type="button" className="btn btn-primary">Descargar Reporte</button>
+        <button type="button" className="btn btn-primary" onClick={() => exportToExcel()}>Descargar Reporte</button>
 
 
         <table className="table table-hover">
@@ -48,10 +77,10 @@ async function page(){
       <th scope="col">Responsable</th>
       <th scope="col">Materia</th>
     </tr>
+    </thead>
     <tbody>
       <ListadoSoporte soportes = {soportes}/>
   </tbody>
-  </thead>
 </table>
 </div>
 </>
