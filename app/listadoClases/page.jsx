@@ -1,9 +1,6 @@
-"use client";
 import ListadoClases from "@/components/ListadoClase"
 import Navigation from "@/components/Navigation";
-import { useState, useEffect } from "react";
-import { useSession } from "@/hooks/useSession";
-import { useRouter } from "next/navigation";
+
 
 async function consulta() {
   const res = await fetch('http://localhost:3000/api/listadoClases', {
@@ -24,17 +21,6 @@ async function consulta() {
 
  
 async function page(){
-
-  const { useSessionUser } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-
-    if(useSessionUser() === false){
-      router.push("/");
-    }
-      
-  }, []);
 
   const clases = await consulta();
   //console.log(clases);

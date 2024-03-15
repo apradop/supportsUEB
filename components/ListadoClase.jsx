@@ -2,8 +2,21 @@
 
 import { useEffect, useState } from "react";
 import ListadoClaseDetalle from "./ListadoClaseDetalle";
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
 
 function listadoClases ({clases}) {
+
+    const { useSessionUser } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+
+        if(useSessionUser() === false){
+          router.push("/");
+        }
+          
+      }, []);
 
     //console.log(clases);
     const date = Date.now();

@@ -40,7 +40,7 @@ function RegisterPage() {
   const [isReady, setIsReady] = useState(false);
   const router = useRouter();
 
-  const { useSessionAdmin, useSessionUser } = useSession();
+  const { useSessionUser } = useSession();
 
   useEffect(() => {
 
