@@ -38,7 +38,7 @@ function ListadoClaseDetalle({
     setSalon(salon);
     setHorai(horai);
     setHoraf(horaf);
-    setProgramas(programas);
+    setProgramas(programas.values.toString());
     setObservaciones(observaciones);
     console.log(docente)
   }, []);
@@ -52,7 +52,7 @@ function ListadoClaseDetalle({
     console.log(salon)
     console.log(horai)
     console.log(horaf)
-    console.log(programas)
+    console.log(programas.values.toString())
     console.log(observaciones)
     setId(id);
     setDocente(docente);
@@ -61,7 +61,7 @@ function ListadoClaseDetalle({
     setSalon(salon);
     setHorai(horai);
     setHoraf(horaf);
-    setProgramas(programas);
+    setProgramas(programas.values.toString());
     setObservaciones(observaciones);
 
   }

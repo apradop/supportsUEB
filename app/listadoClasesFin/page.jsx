@@ -37,7 +37,7 @@ async function exportToExcel() {
       "HORA FINAL": clase.horaf,
       "HORA INICIAL REAL": clase.horaIniReal,
       "HORA FINAL REAL": clase.horaFinalReal,
-      PROGRAMAS: clase.programas,
+      PROGRAMAS: clase.programas.values.toString(),
       OBSERVACIONES: clase.observaciones,
     };
     });

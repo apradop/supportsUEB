@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ModalRegistros from "@/components/ModalRegistros"
 import Navigation from "@/components/Navigation";
+import { ButtonToolbar } from "react-bootstrap";
 
 
 function RegistrarClase({ profes, llave }) {
@@ -45,14 +46,15 @@ function RegistrarClase({ profes, llave }) {
         }
       }
       mensaje(boolean);
+      boolean = true;
       
     } else {
       setVacio();
     }
   }, [profes]);
 
-  function mensaje(boolean) { 
-    if(boolean){
+  function mensaje(b) { 
+    if(b){
       swal({
         title: "El docente no tiene clase a esta hora", 
         button: false,

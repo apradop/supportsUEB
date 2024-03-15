@@ -90,6 +90,8 @@ function ModalRegistros({
 
     if(verificarHora() === true && verificarEspacios() === true){
 
+      imprimir();
+
       const res = await fetch("/api/registrarClase", {
         method: "POST",
         body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, horaIniReal,herramientas, observaciones }),
