@@ -44,8 +44,6 @@ function RegistrarSoporte({ profes, llave }) {
           console.log("entro")
           setProfesor(profes[i]);
           boolean = false;
-        }else{
-          setVacio();
         }
       }
       mensaje(boolean);
@@ -56,13 +54,13 @@ function RegistrarSoporte({ profes, llave }) {
   }, [profes]);
 
 
-  function setProfesor() {
-    setNombre(profes.NombreDocente);
-    setPrograma(profes.Programa);
-    setMateria(profes.Materia);
-    setSalon(profes.EspacioFisico);
-    setHoraIni(profes.HoraInicial);
-    setHoraFini(profes.HoraFinal);
+  function setProfesor(profe) {
+    setNombre(profe.NombreDocente);
+    setPrograma(profe.Programa);
+    setMateria(profe.Materia);
+    setSalon(profe.EspacioFisico);
+    setHoraIni(profe.HoraInicial);
+    setHoraFini(profe.HoraFinal);
     setIsDisabled(true);
   }
 

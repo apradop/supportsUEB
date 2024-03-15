@@ -38,11 +38,8 @@ function RegistrarClase({ profes, llave }) {
         console.log(horafini.getTime())
         console.log(hora.getTime())
         if (horaini.getTime()  <= hora.getTime()  && horafini.getTime() >= hora.getTime()) {
-          console.log("entro")
           setProfesor(profes[i]);
           boolean = false;
-        }else{
-          setVacio();
         }
       }
       mensaje(boolean);
