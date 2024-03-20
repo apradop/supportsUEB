@@ -6,7 +6,7 @@ export async function POST(request) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT * FROM soportes `
+      `SELECT * FROM soporte `
     );
     //console.log(rows);
 

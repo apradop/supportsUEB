@@ -1,29 +1,74 @@
 "use client";
+import useExcel from "@/hooks/useExcel";
 
 
-function listadoSoporte ({soportes}) {
+function listadoSoporte({ soportes }) {
 
-    //console.log(hoy.toLocaleDateString());
+  function exportToExcel(sp) {
+    var arreglo = sp.map((clase) => {
+      return {
+        TECNICO: clase.tecnico,
+        RESPONSABLE: clase.responsable,
+        PROGRAMA: clase.programa,
+        MATERIA: clase.materia,
+        SALON: clase.salon,
+        FECHAS: clase.fecha,
+        "HORA INICIAL": clase.horai,
+        "HORA FINAL": clase.horaf,
+        ESTADO: clase.estado,
+        OBSERVACIONES: clase.observaciones,
+      };
+    });
 
+    const { useExportToExcel } = useExcel();
 
+    useExportToExcel(arreglo, "ReporteSoportes");
+  }
 
-    return (
-        <>
-        {soportes.map((soporte,index) => (
-            
-            <tr key={soporte.id}>
-            <th scope="row">{index+1}</th>
-            <th scope="row">{soporte.fecha}</th>
-            <td> {soporte.horai}</td>
-            <td> {soporte.horaf}</td>
-            <td  >{soporte.salon}</td>
-            <td >{soporte.responsable}</td>
-            <td >{soporte.materia}</td>
+  //console.log(hoy.toLocaleDateString());
+
+  return (
+    <>
+      <div className="container">
+        <h1>Listado de Soportes</h1>
+
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => exportToExcel(soportes)}
+        >
+          Descargar Reporte
+        </button>
+
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Horario Inicial</th>
+              <th scope="col">Horario Final</th>
+              <th scope="col">Salón</th>
+              <th scope="col">Responsable</th>
+              <th scope="col">Materia</th>
             </tr>
-        ))}
-        </>
-        
-    )
+          </thead>
+          <tbody>
+            {soportes.map((soporte, index) => (
+              <tr key={soporte.id}>
+                <th scope="row">{index + 1}</th>
+                <th scope="row">{soporte.fecha}</th>
+                <td> {soporte.horai}</td>
+                <td> {soporte.horaf}</td>
+                <td>{soporte.salon}</td>
+                <td>{soporte.responsable}</td>
+                <td>{soporte.materia}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
 }
 
-export default listadoSoporte
+export default listadoSoporte;
