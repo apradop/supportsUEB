@@ -4,6 +4,7 @@ import { El_Messiri } from "next/font/google";
 
 function ModalRegistros({
   nombre,
+  usuario,
   nombreTec,
   programa,
   materia,
@@ -28,6 +29,7 @@ function ModalRegistros({
   function imprimir(){
 
     console.log(nombre)
+    console.log(usuario)
     console.log(programa)
     console.log(materia)
     console.log(salon)
@@ -57,7 +59,7 @@ function ModalRegistros({
 
   function verificarEspacios() {
 
-    if (nombre === ""  ||  nombreTec === ""  || programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" ) {
+    if (nombre === ""  || usuario === "" ||  nombreTec === ""  || programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" ) {
       swal({
         title: "Todos los campos son obligatorios", 
         button: false,
@@ -95,7 +97,7 @@ function ModalRegistros({
 
       const res = await fetch("/api/registrarSoporte", {
         method: "POST",
-        body: JSON.stringify({ nombre, nombreTec , programa, materia, salon, fecha ,horaIni, horaFini, herramientas,estado , observaciones }),
+        body: JSON.stringify({ nombre, nombreTec , usuario,  programa, materia, salon, fecha ,horaIni, horaFini, herramientas,estado , observaciones }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -145,7 +147,7 @@ function ModalRegistros({
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Registro de {nombre}
+                Registro de {nombre}w
               </h1>
               <button
                 type="button"
@@ -221,12 +223,12 @@ function ModalRegistros({
                         type="text"
                         className="form-control-plaintext"
                         id="floatingPlaintextInput"
-                        value={salon}
-                        onChange={(e) => setVacio(e.target.value)}
+                        value={usuario}
+                        onChange={(e) => setUser(e.target.value)}
                         disabled
                       />
                       <label htmlFor="floatingPlaintextInput">
-                        Aula de clase
+                        Usuario
                       </label>
                     </div>
                   </div>

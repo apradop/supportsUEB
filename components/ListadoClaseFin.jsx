@@ -12,8 +12,8 @@ function listadoClasesFin({ clases }) {
         FECHAS: clase.fecha,
         "HORA INICIAL": clase.horai,
         "HORA FINAL": clase.horaf,
-        "HORA INICIAL REAL": clase.horaIniReal,
-        "HORA FINAL REAL": clase.horaFinalReal,
+        "HORA REGISTRO": clase.horaIniReal,
+        "HORA FINAL REGISTRO": clase.horaFinalReal,
         PROGRAMAS: clase.programas.values.toString(),
         OBSERVACIONES: clase.observaciones,
       };

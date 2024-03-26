@@ -6,6 +6,7 @@ import ModalSoporte from "@/components/ModalSoporte";
 
 function RegistrarSoporte({ profes, llave }) {
   const [nombre, setNombre] = useState("");
+  const [user, setUser] = useState("");
   const [nombreTec, setNombreTec] = useState("");
   const [programa, setPrograma] = useState("");
   const [materia, setMateria] = useState("");
@@ -105,6 +106,22 @@ function RegistrarSoporte({ profes, llave }) {
               value={nombreTec}
               onChange={(e) => setNombreTec(e.target.value)}
             ></input>
+          </div>
+          <div className="col input-group mb-3">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
+              Usuario Institucional
+            </label>
+            <div className="input-group">
+            <input
+              type="email"
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              value={user}
+              onChange={(e) => setUser(e.target.value.trim())}
+            ></input>
+            <span className="input-group-text" id="basic-addon2">@unbosque.edu.co</span>
+            </div>
           </div>
         </div>
         <div className="row">
@@ -236,6 +253,7 @@ function RegistrarSoporte({ profes, llave }) {
             ></textarea>
             <ModalSoporte
               nombre={nombre}
+              usuario={user}
               nombreTec={nombreTec}
               programa={programa}
               materia={materia}

@@ -9,12 +9,11 @@ function listadoSoporte({ soportes }) {
       return {
         TECNICO: clase.tecnico,
         RESPONSABLE: clase.responsable,
+        USUARIO : clase.usuario,
         PROGRAMA: clase.programa,
         MATERIA: clase.materia,
         SALON: clase.salon,
         FECHAS: clase.fecha,
-        "HORA INICIAL": clase.horai,
-        "HORA FINAL": clase.horaf,
         ESTADO: clase.estado,
         OBSERVACIONES: clase.observaciones,
       };
