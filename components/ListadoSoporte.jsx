@@ -1,15 +1,13 @@
 "use client";
 import useExcel from "@/hooks/useExcel";
 
-
 function listadoSoporte({ soportes }) {
-
   function exportToExcel(sp) {
     var arreglo = sp.map((clase) => {
       return {
         TECNICO: clase.tecnico,
         RESPONSABLE: clase.responsable,
-        USUARIO : clase.usuario,
+        USUARIO: clase.usuario,
         PROGRAMA: clase.programa,
         MATERIA: clase.materia,
         SALON: clase.salon,
@@ -39,6 +37,7 @@ function listadoSoporte({ soportes }) {
           Descargar Reporte
         </button>
 
+        <div className="table-responsive">
         <table className="table table-hover">
           <thead>
             <tr>
@@ -65,6 +64,9 @@ function listadoSoporte({ soportes }) {
             ))}
           </tbody>
         </table>
+        </div>
+
+        
       </div>
     </>
   );

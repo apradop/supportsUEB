@@ -37,6 +37,7 @@ function listadoClasesFin({ clases }) {
           Descargar Reporte
         </button>
 
+        <div className="table-responsive">
         <table className="table table-hover">
           <thead>
             <tr>
@@ -63,6 +64,9 @@ function listadoClasesFin({ clases }) {
             ))}
           </tbody>
         </table>
+        </div>
+
+        
       </div>
     </>
   );
