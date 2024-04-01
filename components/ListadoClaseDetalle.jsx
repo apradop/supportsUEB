@@ -10,6 +10,7 @@ function ListadoClaseDetalle({
     salon,
     horai,
     horaf,
+    horaIniReal,
     programas,
     observaciones,
 }) {
@@ -97,7 +98,7 @@ function ListadoClaseDetalle({
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => actualizar(id, horai)}
+          onClick={() => actualizar(id, horaIniReal)}
         >
           Finalizar
         </button>

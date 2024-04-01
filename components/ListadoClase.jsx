@@ -39,7 +39,7 @@ function listadoClases ({clases}) {
             <td >{clase.materia}</td>
             <td>
       
-            <ListadoClaseDetalle id={clase.id} docente={clase.responsable} programa={clase.programa} materia={clase.materia} salon={clase.salon} horai={clase.horai} horaf={clase.horaf} programas={clase.programas} observaciones={clase.observaciones} />
+            <ListadoClaseDetalle horaIniReal={clase.horaIniReal} id={clase.id} docente={clase.responsable} programa={clase.programa} materia={clase.materia} salon={clase.salon} horai={clase.horai} horaf={clase.horaf} programas={clase.programas} observaciones={clase.observaciones} />
       
             </td>
             </tr>
