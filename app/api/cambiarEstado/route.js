@@ -22,29 +22,41 @@ export async function GET() {
 export async function POST(request) {
   const conn = await pool.getConnection();
   const data = await request.json();
+
   try {
     const date = Date.now();
     const hoy =  new Date(date);
     const hora = hoy.getTime();
     const resutl = new Date(hora);
-    let horaIniReal= "";
+    console.log(data.horaIniReal);
+    const horaIniReal = (hoy.getMonth() + 1) + "/" + hoy.getDate() + "/"  + hoy.getFullYear() +" " +data.horaIniReal;
+    console.log(horaIniReal);
+    const dura = new Date(horaIniReal);
+    console.log(dura.getTime());
+    console.log(hoy.getTime());
+    console.log((hoy.getTime() - dura.getTime()) );
+    const duracion = (hoy.getTime() - dura.getTime()) / (1000*60);
+    console.log(duracion);
+    let horaFinalReal= "";
 
     if (resutl.getHours() < 10) {
-      horaIniReal += "0" + resutl.getHours() + ":";
+      horaFinalReal += "0" + resutl.getHours() + ":";
     }else{  
-      horaIniReal += resutl.getHours() + ":";
+      horaFinalReal += resutl.getHours() + ":";
     }
     
     if (resutl.getMinutes() < 10) {
-      horaIniReal += "0" + resutl.getMinutes();
+      horaFinalReal += "0" + resutl.getMinutes();
     }else{
-      horaIniReal += resutl.getMinutes();
+      horaFinalReal += resutl.getMinutes();
     }
 
-    console.log(horaIniReal);
     const rows = await conn.query(
-      `UPDATE clases SET estado = 'finalizada' , horaFinalReal = '${horaIniReal}' WHERE id = "${data.id}"`
+      `UPDATE clases SET estado = 'finalizada' , horaFinalReal = '${horaFinalReal}', duracion = '${duracion}' WHERE id = "${data.id}"`
     );
+
+    console.log(horaFinalReal);
+
     //console.log(rows);
 
     
@@ -55,3 +67,7 @@ export async function POST(request) {
     conn.end();
   }
 }
+
+
+
+

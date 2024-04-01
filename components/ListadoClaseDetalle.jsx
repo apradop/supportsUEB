@@ -66,12 +66,11 @@ function ListadoClaseDetalle({
 
   }
 
-  async function actualizar(id){
-    const ida = id
+  async function actualizar(id, horaIniReal){
   
     const res = await fetch('api/cambiarEstado', {
       method: "POST",
-      body: JSON.stringify({id}),
+      body: JSON.stringify({id, horaIniReal}),
       headers: {
         "Content-Type": "application/json",
       }
@@ -98,7 +97,7 @@ function ListadoClaseDetalle({
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => actualizar(id)}
+          onClick={() => actualizar(id, horai)}
         >
           Finalizar
         </button>
