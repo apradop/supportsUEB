@@ -28,13 +28,6 @@ async function page() {
       <div className="container">
         <h1>Listado de Clases</h1>
 
-        <button type="button" className="btn btn-primary">
-          Actualizar
-        </button>
-
-        <button type="button" className="btn btn-success">
-          Buscar
-        </button>
 
         <div className="table-responsive">
         <table className="table table-hover">
