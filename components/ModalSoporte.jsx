@@ -13,7 +13,8 @@ function ModalRegistros({
   horaFini,
   herramientas,
   observaciones,
-  estado
+  estado,
+  actividad
 }) {
   const [vacio, setVacio] = useState("");
   const router = useRouter();
@@ -37,6 +38,7 @@ function ModalRegistros({
     console.log(horaFini)
     console.log(observaciones)
     console.log(estado)
+    console.log(actividad)
 
   }
 
@@ -87,7 +89,35 @@ function ModalRegistros({
 
   }
 
+  async function enviarCorreo(){
+    const res2 = await fetch("/api/enviarCorreo", {
+      method: "POST",
+      body: JSON.stringify({usuario}),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    //const data2 = res2.json();
+  }
+
+  async function enviarCorreo2(){
+    const res2 = await fetch("/api/enviarCorreoMesa", {
+      method: "POST",
+      body: JSON.stringify({usuario}),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    //const data2 = res2.json();
+  }
+
+
   async function RegistrarSoporte() {
+
+    //enviarCorreo();
+    //enviarCorreo2();
 
     if(verificarHora() === true && verificarEspacios() === true){
 
@@ -97,7 +127,7 @@ function ModalRegistros({
 
       const res = await fetch("/api/registrarSoporte", {
         method: "POST",
-        body: JSON.stringify({ nombre, nombreTec , usuario,  programa, materia, salon, fecha ,horaIni, horaFini, herramientas,estado , observaciones }),
+        body: JSON.stringify({ nombre, nombreTec , usuario,  programa, materia, salon, fecha ,horaIni, horaFini, herramientas,estado , observaciones, actividad }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -119,6 +149,12 @@ function ModalRegistros({
 
     }
   
+  }
+
+  function ambas(){
+    RegistrarSoporte();
+    enviarCorreo();
+    enviarCorreo2();
   }
 
   return (
@@ -147,7 +183,7 @@ function ModalRegistros({
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Registro de {nombre}w
+                Registro de {nombre}
               </h1>
               <button
                 type="button"

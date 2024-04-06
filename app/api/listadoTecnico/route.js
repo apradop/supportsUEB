@@ -5,7 +5,7 @@ export async function GET() {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT * FROM tecnico`
+      `SELECT * FROM tecnicos`
     );
     conn.end();
     return new NextResponse(JSON.stringify(rows));
