@@ -14,6 +14,7 @@ function RegistrarSoporte({ profes, llave }) {
   const [horaFini, setHoraFini] = useState("");
   const [observaciones, setObservaciones] = useState("");
   const [actividadRea, setActividadRea] = useState("");
+  const [actividadAdi, setActividadAdi] = useState("");
   const [estado, setEstado] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [isDisabledObs, setIsDisabledObs] = useState(true);
@@ -86,6 +87,7 @@ function RegistrarSoporte({ profes, llave }) {
     setHoraIni("");
     setHoraFini("");
     setActividadRea("");
+    setActividadAdi("");
     setIsDisabled(false);
     setIsDisabledObs(true);
   }
@@ -116,9 +118,11 @@ function RegistrarSoporte({ profes, llave }) {
               className="form-select"
               id="inputGroupSelect01"
               onChange={(e) => {
+                console.log(e.target.value);
                 setNombreTec(e.target.value);
               }}
             >
+              <option>----Seleccione----</option>
               <option>Anderson Javier Avila Peña</option>
               <option>Brayan Steven Moreno</option>
               <option>Carlos Alberto Gutiérrez Cruz</option>
@@ -246,6 +250,7 @@ function RegistrarSoporte({ profes, llave }) {
                   setActividadRea(e.target.value);
                 }}
               >
+                <option>----Seleccione----</option>
                 <option>Acompañamiento / Inducción</option>
                 <option>Asignación Provisional de Portatil</option>
                 <option>Configuración Video Beam - TV</option>
@@ -334,6 +339,7 @@ function RegistrarSoporte({ profes, llave }) {
               observaciones={observaciones}
               estado={estado}
               actividad={actividadRea}
+              actividadAdi={actividadAdi}
             />
           </div>
         </div>

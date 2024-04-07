@@ -16,6 +16,7 @@ export async function GET(req, res) {
 export async function POST(req, res){
     const data = await req.json();
     const usuario = "jaramillopac@gmail.com";
+    const act = data.actividadadi;
     
     console.log("ESTE ES EL SEGUNDO CORREO:----")
     console.log(usuario)
@@ -24,7 +25,7 @@ export async function POST(req, res){
             "Registro de un nuevo Soporte",
             usuario,
             "Esto es una prueba del funcionamiento del correo",
-            "<h1>Hola Mundo</h1> <p> Esto es la prueba del parrafo dentro del formato html del correo </p>"
+            "<h1>Hola Mundo</h1> <p> Esto es la prueba del parrafo dentro del formato html del correo </p>" + act
           );
           res.status(200).send("Success");
     } catch (err) {
