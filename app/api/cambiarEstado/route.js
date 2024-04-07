@@ -52,7 +52,7 @@ export async function POST(request) {
     }
 
     const rows = await conn.query(
-      `UPDATE clases SET estado = 'finalizada' , horaFinalReal = '${horaFinalReal}', duracion = '${duracion}' WHERE id = "${data.id}"`
+      `UPDATE clases SET estado = 'finalizada' , horaFinalReal = '${horaFinalReal}', duracion = '${duracion}' , profeTerminar = '${data.terminar}' WHERE id = "${data.id}"`
     );
 
     console.log(horaFinalReal);

@@ -19,8 +19,8 @@ async function consulta() {
 }
 
 async function page() {
+
   const clases = await consulta();
-  //console.log(clases);
 
   return (
     <>

@@ -30,7 +30,7 @@ function ModalRegistros({
     }
     
     if (resutl.getMinutes() < 10) {
-      horaIniReal += "0" + resutl.getMinutes() + ":";
+      horaIniReal += "0" + resutl.getMinutes();
     }else{
       horaIniReal += resutl.getMinutes();
     }

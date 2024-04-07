@@ -71,7 +71,7 @@ function ListadoClaseDetalle({
   
     const res = await fetch('api/cambiarEstado', {
       method: "POST",
-      body: JSON.stringify({id, horaIniReal}),
+      body: JSON.stringify({id, horaIniReal, terminar: "si"}),
       headers: {
         "Content-Type": "application/json",
       }
