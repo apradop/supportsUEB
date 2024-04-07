@@ -48,10 +48,12 @@ function listadoClases ({clases}) {
         }
       }
       );
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }else{
       console.log("no entro");
-      clearInterval(cls);
+      console.log(clas)
     }
   
   }
@@ -64,7 +66,7 @@ function listadoClases ({clases}) {
         if(useSessionUser() === false){
           router.push("/");
         }
-          
+        
       }, []);
 
     //console.log(clases);
