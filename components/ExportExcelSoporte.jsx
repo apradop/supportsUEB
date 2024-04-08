@@ -2,30 +2,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useExcel from "@/hooks/useExcel";
 
-function ExportExcel({ clases }) {
-  const [vacio, setVacio] = useState("");
+
+function ExportExcelSoporte({ soportes }) {
+
   const [fecha1, setFecha1] = useState("");
   const [fecha2, setFecha2] = useState("");
-  function contarRepetidos(arr) {
-    var conteo = {};
-
-    arr.forEach(function (elemento) {
-      if (conteo[elemento]) {
-        conteo[elemento]++;
-      } else {
-        conteo[elemento] = 1;
-      }
-    });
-    var conteoArray = [];
-    for (var clave in conteo) {
-      conteoArray.push({ elemento: clave, repeticiones: conteo[clave] });
-    }
-
-    conteoArray.sort(function (a, b) {
-      return b.repeticiones - a.repeticiones;
-    });
-    return conteoArray;
-  }
 
   function obtenerClasesXFecha(clases, fecha1, fecha2) {
 
@@ -72,63 +53,26 @@ function ExportExcel({ clases }) {
     }
   }
 
-  function exportToExcel(clas) {
-    var programas = clas.map((clase) => {
-      var primerArreglo = {
-        PROGRAMAS: clase.programas.values.toString(),
-      };
-
-      return primerArreglo;
-    });
-
-    var prog1 = programas.map((programa) => {
-      return programa.PROGRAMAS.split(",");
-    });
-
-    const nuevoProgramas = [].concat(...prog1);
-
-    var repetidos = contarRepetidos(nuevoProgramas);
-
-    var arreglo = clas.map((clase) => {
-      var a = {};
-
-      var b = clase.programas.values.toString().split(",");
-
-      for (var i = 0; i < repetidos.length; i++) {
-        for (var j = 0; j < b.length; j++) {
-          if (repetidos[i].elemento === b[j]) {
-            a = {
-              ...a,
-              [repetidos[i].elemento]: "X",
-            };
-          }
-        }
-      }
-
-      var primerArreglo = {
+  function exportToExcel(sp) {
+    var arreglo = sp.map((clase) => {
+      return {
+        TECNICO: clase.tecnico,
         RESPONSABLE: clase.responsable,
+        USUARIO: clase.usuario,
         PROGRAMA: clase.programa,
         MATERIA: clase.materia,
         SALON: clase.salon,
         FECHAS: clase.fecha,
-        "HORA INICIAL": clase.horai,
-        "HORA FINAL": clase.horaf,
-        "HORA REGISTRO": clase.horaIniReal,
-        "HORA FINAL REGISTRO": clase.horaFinalReal,
-        DURACION: clase.duracion,
+        ESTADO: clase.estado,
         OBSERVACIONES: clase.observaciones,
-        "PROFESOR QUE TERMINA": clase.profeTerminar,
-        ...a,
+        ACTIVIDAD: clase.actividad,
+        "ACTIVIDAD ADICIONAL": clase.actividadad,
       };
-
-      return primerArreglo;
     });
-
-    console.log(arreglo);
 
     const { useExportToExcel } = useExcel();
 
-    useExportToExcel(arreglo, "ClasesFinalizadasReporte");
+    useExportToExcel(arreglo, "ReporteSoportes");
   }
   return (
     <div>
@@ -139,7 +83,7 @@ function ExportExcel({ clases }) {
           data-bs-toggle="modal"
           data-bs-target="#modal"
         >
-          Generar reporte
+          Generar Reporte
         </button>
       </div>
       {/*<!-- Modal -->*/}
@@ -155,7 +99,7 @@ function ExportExcel({ clases }) {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                GENERACIÓN DEL REPORTE
+                GENERACION DEL REPORTE
               </h1>
               <button
                 type="button"
@@ -212,7 +156,7 @@ function ExportExcel({ clases }) {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => {
-                  obtenerClasesXFecha(clases, fecha1, fecha2);
+                  obtenerClasesXFecha(soportes, fecha1, fecha2);
                 }}
                 data-bs-dismiss="modal"
               >
@@ -226,4 +170,4 @@ function ExportExcel({ clases }) {
   );
 }
 
-export default ExportExcel;
+export default ExportExcelSoporte;
