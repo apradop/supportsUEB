@@ -68,11 +68,11 @@ function ExportExcel({ clases }) {
       });
 
       console.log(clasesFiltradas);
-      exportToExcel(clasesFiltradas);
+      ExportToExcel(clasesFiltradas);
     }
   }
 
-  function exportToExcel(clas) {
+  function ExportToExcel(clas) {
     var programas = clas.map((clase) => {
       var primerArreglo = {
         PROGRAMAS: clase.programas.values.toString(),
