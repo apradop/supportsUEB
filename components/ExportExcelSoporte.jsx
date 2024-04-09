@@ -49,11 +49,11 @@ function ExportExcelSoporte({ soportes }) {
       });
 
       console.log(clasesFiltradas);
-      exportToExcel(clasesFiltradas);
+      ExportToExcel(clasesFiltradas);
     }
   }
 
-  function exportToExcel(sp) {
+  function ExportToExcel(sp) {
     var arreglo = sp.map((clase) => {
       return {
         TECNICO: clase.tecnico,

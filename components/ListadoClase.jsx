@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 
 
 
-function listadoClases ({clases}) {
+function ListadoClases ({clases}) {
 
   const [clas, setClases] = useState(clases);
+  const { useSessionUser } = useSession();
 
   console.log("entroooooooooooooooooo")
   console.log(clas)
@@ -58,14 +59,19 @@ function listadoClases ({clases}) {
   
   }
 
-    const { useSessionUser } = useSession();
     const router = useRouter();
+
+    function ValidarSesion() {
+
+      if(useSessionUser() === false){
+        router.push("/");
+      }
+  
+    }
 
     useEffect(() => {
 
-        if(useSessionUser() === false){
-          router.push("/");
-        }
+        ValidarSesion();
         
       }, []);
 
@@ -100,4 +106,4 @@ function listadoClases ({clases}) {
     )
 }
 
-export default listadoClases
+export default ListadoClases
