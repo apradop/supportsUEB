@@ -131,7 +131,7 @@ function ModalRegistros({
   }
 
   async function enviarCorreo() {
-    const res2 = await fetch("http://localhost:3000/api/enviarCorreo", {
+    const res2 = await fetch("/api/enviarCorreo", {
       method: "POST",
       body: JSON.stringify({ usuario }),
       headers: {
@@ -143,7 +143,7 @@ function ModalRegistros({
   }
 
   async function enviarCorreo2() {
-    const res2 = await fetch("http://localhost:3000/api/enviarCorreoMesa", {
+    const res2 = await fetch("/api/enviarCorreoMesa", {
       method: "POST",
       body: JSON.stringify({ usuario, actividadadi }),
       headers: {
@@ -155,14 +155,11 @@ function ModalRegistros({
   }
 
   async function RegistrarSoporte() {
-    enviarCorreo();
+    
 
 
     
-    if(estado2 === "Si"){
-      actividadadi = resAct;
-      enviarCorreo2();
-    }
+    
 
     if (verificarHora() === true && verificarEspacios() === true && verificarCampos() === true) {
       if (observaciones === "") {
@@ -206,6 +203,16 @@ function ModalRegistros({
         icon: "success",
         timer: 2000,
       });
+
+      
+      enviarCorreo();
+
+      if(estado2 === "Si"){
+        console.log("Entra a enviar el correo")
+        actividadadi = resAct;
+        enviarCorreo2();
+      }
+
 
       setTimeout(() => {
         window.location.reload();
@@ -272,7 +279,7 @@ function ModalRegistros({
                         setEstado2(e.target.value);
                       }}
                     />
-                    <label className="form-check-label" htmlFor="inlineRadio1">
+                    <label className="form-check-label" htmlFor="inlineRadio2">
                       NO
                     </label>
                   </div>
@@ -280,15 +287,15 @@ function ModalRegistros({
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="inlineRadioOptions2"
-                      id="inlineRadio2"
+                      name="inlineRadioOptions2s"
+                      id="inlineRadio2s"
                       value="Si"
                       onChange={(e) => {
                         setIsDisabledAct(false);
                         setEstado2(e.target.value);
                       }}
                     />
-                    <label className="form-check-label" htmlFor="inlineRadio1">
+                    <label className="form-check-label" htmlFor="inlineRadio2">
                       SI
                     </label>
                   </div>

@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import ModalSoporte from "@/components/ModalSoporte";
 
@@ -25,10 +24,13 @@ function RegistrarSoporte({ profes, llave }) {
   const horafini = new Date();
   const hora = new Date();
   let boolean = true;
+  
 
-  //LeerTecnicos();
+  
 
   useEffect(() => {
+    LeerTecnicos();
+    
     if (
       profes !== undefined &&
       profes !== null &&
@@ -93,8 +95,8 @@ function RegistrarSoporte({ profes, llave }) {
   }
 
   async function LeerTecnicos() {
-    const res = await fetch("http://localhost:3000/api/listadoTecnico", {
-      method: "GET",
+    const res = await fetch("/api/listadoTecnico", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -103,7 +105,21 @@ function RegistrarSoporte({ profes, llave }) {
     const data = await res.json();
     console.log("ESTOS SON LOS TECNICOS");
     typeof data;
-    console.log(data);
+    //console.log(data);
+
+    if (process.browser) {
+      const tecnicosd = document.querySelector("#selectorTecnicos");
+
+      let out = "";
+      out += `<option> ----Seleccione---- </option>`;
+      for (let tec of data) {
+        console.log(tec.tecnico);
+        out += `<option >${tec.tecnico} </option>`;
+      }
+      tecnicosd.innerHTML = out;
+    }
+
+    
   }
 
   return (
@@ -116,29 +132,12 @@ function RegistrarSoporte({ profes, llave }) {
             </label>
             <select
               className="form-select"
-              id="inputGroupSelect01"
+              id="selectorTecnicos"
               onChange={(e) => {
                 console.log(e.target.value);
                 setNombreTec(e.target.value);
               }}
             >
-              <option>----Seleccione----</option>
-              <option>Anderson Javier Avila Peña</option>
-              <option>Brayan Steven Moreno</option>
-              <option>Carlos Alberto Gutiérrez Cruz</option>
-              <option>Edwin Franco Cruz</option>
-              <option>Fabian Alexis Franco Gonzalez</option>
-              <option>Javier Oswaldo Bohorquez Santiago</option>
-              <option>Johan Manuel Gaviria</option>
-              <option>John Jairo Agudelo</option>
-              <option>Juan David Morales</option>
-              <option>Juan José Gamarra Gale</option>
-              <option>Karen Lorena Vasquez</option>
-              <option>Kewin Esteban Restrepo</option>
-              <option>Nelson Alvarez Coronado</option>
-              <option>Oscar Andrés Deantonio</option>
-              <option>Santi Anderson Altuzarra</option>
-              <option>Santiago Alejandro Orjuela</option>
             </select>
           </div>
           <div className="col input-group mb-3">

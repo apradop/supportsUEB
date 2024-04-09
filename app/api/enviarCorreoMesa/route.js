@@ -15,11 +15,9 @@ export async function GET(req, res) {
 
 export async function POST(req, res){
     const data = await req.json();
-    const usuario = "jaramillopac@gmail.com";
+    const usuario = process.env.MAILMESA;
     const act = data.actividadadi;
     
-    console.log("ESTE ES EL SEGUNDO CORREO:----")
-    console.log(usuario)
     try {
         await sendMail(
             "Registro de un nuevo Soporte",
