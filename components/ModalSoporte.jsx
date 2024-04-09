@@ -133,7 +133,7 @@ function ModalRegistros({
   async function enviarCorreo() {
     const res2 = await fetch("/api/enviarCorreo", {
       method: "POST",
-      body: JSON.stringify({ usuario }),
+      body: JSON.stringify({ usuario, nombre, programa, materia, salon, fecha, nombreTec, actividad }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -145,7 +145,7 @@ function ModalRegistros({
   async function enviarCorreo2() {
     const res2 = await fetch("/api/enviarCorreoMesa", {
       method: "POST",
-      body: JSON.stringify({ usuario, actividadadi }),
+      body: JSON.stringify({ actividadadi, salon }),
       headers: {
         "Content-Type": "application/json",
       },

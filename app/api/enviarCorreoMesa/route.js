@@ -16,14 +16,14 @@ export async function GET(req, res) {
 export async function POST(req, res){
     const data = await req.json();
     const usuario = process.env.MAILMESA;
-    const act = data.actividadadi;
+    //const act = data.actividadadi;
     
     try {
         await sendMail(
             "Registro de un nuevo Soporte",
             usuario,
             "Esto es una prueba del funcionamiento del correo",
-            "<h1>Hola Mundo</h1> <p> Esto es la prueba del parrafo dentro del formato html del correo </p>" + act
+            "<h1>Registro de Actividad Adicional para Soporte Espacio Académicos</h1> <p> Buen dia </p> <p>Se registro la siguiente actividad adicional:  " + data.actividadadi + " para el bloque y salon:  " + data.salon + "</p> <p> Agradecemos crear el caso correspondiente para dar solucion lo mas pronto posible. </p> <p> Cordialmente </p>"
           );
           res.status(200).send("Success");
     } catch (err) {
