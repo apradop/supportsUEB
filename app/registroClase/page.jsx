@@ -42,11 +42,17 @@ function RegisterPage() {
 
   const { useSessionUser } = useSession();
 
-  useEffect(() => {
+  function ValidarSesion() {
 
     if(useSessionUser() === false){
       router.push("/");
     }
+
+  }
+
+  useEffect(() => {
+
+    ValidarSesion();
       
   }, []);
 

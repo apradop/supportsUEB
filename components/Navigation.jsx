@@ -9,28 +9,30 @@ import { useEffect, useState } from "react";
 function Navigation() {
   const router = useRouter();
   const { useSessionUser } = useSession();
-  const [ boleanUser, setBoleanUser ] = useState(false);
+  const [boleanUser, setBoleanUser] = useState(false);
 
-  
-  useEffect(() => {
-
-    if(useSessionUser() === false){
+  function ValidarSesion() {
+    if (useSessionUser() === false) {
       console.log("No hay sesión");
-      setBoleanUser(false)
-    }else{
+      setBoleanUser(false);
+    } else {
       console.log("Hay sesión");
-      setBoleanUser(true)
-      console.log(boleanUser)
-      
+      setBoleanUser(true);
+      console.log(boleanUser);
     }
-      
-  }, []);
+  }
+
+  useEffect(() => {ValidarSesion()}, []);
 
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-primary">
         <div className="container">
-        <img src="https://www.unbosque.edu.co/sites/default/files/logo.png" alt="Bootstrap"  height="50"/>
+          <img
+            src="https://www.unbosque.edu.co/sites/default/files/logo.png"
+            alt="Bootstrap"
+            height="50"
+          />
           <button
             className="navbar-toggler"
             type="button"
@@ -43,22 +45,25 @@ function Navigation() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarColor01">
-            
             <ul className="navbar-nav ms-auto">
-            {boleanUser
-            ? <><li className="nav-item">
-                  <Link className="nav-link" href="/registroSoporte">
-                    Registrar Soporte
-                  </Link>
-                </li><li className="nav-item">
+              {boleanUser ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" href="/registroSoporte">
+                      Registrar Soporte
+                    </Link>
+                  </li>
+                  <li className="nav-item">
                     <Link className="nav-link" href="/registroClase">
                       Registrar Clase
                     </Link>
-                  </li><li className="nav-item">
+                  </li>
+                  <li className="nav-item">
                     <Link className="nav-link" href="/listadoClases">
                       Listado de clases
                     </Link>
-                  </li><li className="nav-item">
+                  </li>
+                  <li className="nav-item">
                     <a
                       className="nav-link"
                       target="_blank"
@@ -66,20 +71,22 @@ function Navigation() {
                     >
                       SIPRE-UEB
                     </a>
-                  </li></>
-      
-              :
-              <><li className="nav-item">
-                  <Link className="nav-link" href="/listadoSoporte">
-                    Listado de Soportes
-                  </Link>
-                </li><li className="nav-item">
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" href="/listadoSoporte">
+                      Listado de Soportes
+                    </Link>
+                  </li>
+                  <li className="nav-item">
                     <Link className="nav-link" href="/listadoClasesFin">
                       Listado de clases
                     </Link>
-                  </li></>
-              
-    }
+                  </li>
+                </>
+              )}
               <li className="nav-item">
                 <Link className="nav-link" href="/">
                   Cerrar Sesión
@@ -89,7 +96,6 @@ function Navigation() {
           </div>
         </div>
       </nav>
-      
     </>
   );
 }

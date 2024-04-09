@@ -42,12 +42,14 @@ async function buscarProfe(cedula) {
   const { useSessionUser } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
-
+  function ValidarSesion() {
     if(useSessionUser() === false){
       router.push("/");
     }
-      
+  }
+
+  useEffect(() => {
+    ValidarSesion();
   }, []);
 
   return (
