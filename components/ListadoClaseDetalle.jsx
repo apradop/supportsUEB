@@ -10,6 +10,7 @@ function ListadoClaseDetalle({
     salon,
     horai,
     horaf,
+    horaIniReal,
     programas,
     observaciones,
 }) {
@@ -38,7 +39,7 @@ function ListadoClaseDetalle({
     setSalon(salon);
     setHorai(horai);
     setHoraf(horaf);
-    setProgramas(programas);
+    setProgramas(programas.values.toString());
     setObservaciones(observaciones);
     console.log(docente)
   }, []);
@@ -52,7 +53,7 @@ function ListadoClaseDetalle({
     console.log(salon)
     console.log(horai)
     console.log(horaf)
-    console.log(programas)
+    console.log(programas.values.toString())
     console.log(observaciones)
     setId(id);
     setDocente(docente);
@@ -61,17 +62,16 @@ function ListadoClaseDetalle({
     setSalon(salon);
     setHorai(horai);
     setHoraf(horaf);
-    setProgramas(programas);
+    setProgramas(programas.values.toString());
     setObservaciones(observaciones);
 
   }
 
-  async function actualizar(id){
-    const ida = id
+  async function actualizar(id, horaIniReal){
   
     const res = await fetch('api/cambiarEstado', {
       method: "POST",
-      body: JSON.stringify({id}),
+      body: JSON.stringify({id, horaIniReal, terminar: "si"}),
       headers: {
         "Content-Type": "application/json",
       }
@@ -98,7 +98,7 @@ function ListadoClaseDetalle({
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => actualizar(id)}
+          onClick={() => actualizar(id, horaIniReal)}
         >
           Finalizar
         </button>

@@ -19,8 +19,7 @@ async function buscarProfe(cedula) {
 
   const dat = await res.json();
   const data = dat[0];
-
-  if (dat.length !== 0) {
+  if (data.length > 0) {
     return data;
   }else{
 
@@ -41,13 +40,19 @@ function RegisterPage() {
   const [isReady, setIsReady] = useState(false);
   const router = useRouter();
 
-  const { useSessionAdmin, useSessionUser } = useSession();
+  const { useSessionUser } = useSession();
 
-  useEffect(() => {
+  function ValidarSesion() {
 
     if(useSessionUser() === false){
       router.push("/");
     }
+
+  }
+
+  useEffect(() => {
+
+    ValidarSesion();
       
   }, []);
 

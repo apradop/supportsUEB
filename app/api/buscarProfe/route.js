@@ -62,7 +62,7 @@ export async function POST(request) {
         const data = await res.text()
         const jsonTables = parse("<table>" + dat + data + "</table>")
         console.log(jsonTables.results)
-      return new NextResponse(JSON.stringify(jsonTables.results[0]));
+      return new NextResponse(JSON.stringify(jsonTables.results));
     } catch (err) {
       return new NextResponse(JSON.stringify({ error: err.message }));
     } finally {

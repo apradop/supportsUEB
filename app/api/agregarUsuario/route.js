@@ -7,20 +7,13 @@ export async function POST(request) {
     const data = await request.json();
     const datos = [
       data.nombre,
-      data.programa,
-      data.materia,
-      data.salon,
-      data.fecha,
-      data.horaIni,
-      data.horaFini,
-      data.horaIniReal,
-      data.herramientas,
-      data.observaciones,
+      data.contraseña,
+      data.rol
     ];
-    console.log(datos);
+    //console.log(datos);
     const rows = await conn.query(
-      "INSERT INTO clases (responsable, programa, materia, salon, fecha , horai, horaf, horaIniReal, programas, observaciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-      datos
+      "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, ?);",
+        datos
     );
     console.log(rows);
     conn.end();
