@@ -99,7 +99,7 @@ function ExportExcel({ clases }) {
           if (repetidos[i].elemento === b[j]) {
             a = {
               ...a,
-              [repetidos[i].elemento]: "X",
+              [repetidos[i].elemento]: "SI",
             };
           }
         }
