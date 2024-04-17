@@ -35,7 +35,7 @@ export async function POST(request) {
     console.log(dura.getTime());
     console.log(hoy.getTime());
     console.log((hoy.getTime() - dura.getTime()) );
-    const duracion = (hoy.getTime() - dura.getTime()) / (1000*60);
+    var duracion = (hoy.getTime() - dura.getTime()) / (1000*60);
     console.log(duracion);
     let horaFinalReal= "";
 
@@ -50,6 +50,23 @@ export async function POST(request) {
     }else{
       horaFinalReal += resutl.getMinutes();
     }
+
+    if (resutl.getSeconds() < 10) {
+      horaFinalReal += "0" + resutl.getSeconds();
+    }else{
+      horaFinalReal += resutl.getSeconds();
+    }
+
+    if(data.terminar === "no"){
+      horaFinalReal = data.horaf;
+      const horaf = (hoy.getMonth() + 1) + "/" + hoy.getDate() + "/"  + hoy.getFullYear() +" " +data.horaf;
+      const duraF = new Date(horaf);
+      const horaIniReal = (hoy.getMonth() + 1) + "/" + hoy.getDate() + "/"  + hoy.getFullYear() +" " +data.horaIniReal;
+      const duraI = new Date(horaIniReal);
+      duracion = (duraF.getTime() - duraI.getTime()) / (1000*60);
+      console.log(duracion);
+    }
+
 
     const rows = await conn.query(
       `UPDATE clases SET estado = 'finalizada' , horaFinalReal = '${horaFinalReal}', duracion = '${duracion}' , profeTerminar = '${data.terminar}' WHERE id = "${data.id}"`

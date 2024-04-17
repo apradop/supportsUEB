@@ -166,7 +166,7 @@ function RegistrarClase({ profes, llave }) {
         <div className="row">
           <div className="col">
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
-              Herramientas a utilizar
+              Herramientas a utilizar (Si desea escoger mas de una, mantenga presionada la tecla ctrl)
             </label>
             <select className="form-select" id="inputGroupSelect01" multiple
             onChange={(e) => {

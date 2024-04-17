@@ -70,7 +70,7 @@ function ModalRegistros({
 
   function verificarEspacios() {
 
-    if (nombre === "" || programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" || herramientas === "" ) {
+    if (nombre === "" || programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" || Object.keys(herramientas.values).length === 0 ) {
       swal({
         title: "Todos los campos son obligatorios", 
         button: false,
