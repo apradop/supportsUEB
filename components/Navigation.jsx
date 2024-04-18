@@ -8,17 +8,14 @@ import { useEffect, useState } from "react";
 
 function Navigation() {
   const router = useRouter();
-  const { useSessionUser } = useSession();
+  const { useSessionUser, useSessionAdmin } = useSession();
   const [boleanUser, setBoleanUser] = useState(false);
 
   function ValidarSesion() {
-    if (useSessionUser() === false) {
-      console.log("No hay sesión");
+    if (useSessionUser() === false && useSessionAdmin() === true){
       setBoleanUser(false);
     } else {
-      console.log("Hay sesión");
       setBoleanUser(true);
-      console.log(boleanUser);
     }
   }
 

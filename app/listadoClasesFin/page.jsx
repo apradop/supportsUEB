@@ -1,11 +1,20 @@
+"use client";
 
 import ListadoClasesFin from "@/components/ListadoClaseFin"
 import Navigation from "@/components/Navigation";
+import { useEffect, useState } from "react";
+ 
+function Page(){
+
+  const [clases, setClases] = useState({})
+
+  useEffect(() => {
+    buscarClases();
+  }, []);
 
 
-
-async function consulta() {
-  const res = await fetch('http://localhost:3000/api/listadoClasesFin', {
+  const buscarClases = async () => {
+    const res = await fetch('/api/listadoClasesFin', {
     method: "POST",
     body: JSON.stringify({"mensaje":"mensaje"}),
     headers: {
@@ -13,18 +22,11 @@ async function consulta() {
     },
     cache: "no-cache",
     mode: "cors"
-  });
+  }).then(res => res.json());
+  setClases(res);
+  console.log(res);
+  }
 
-  //console.log(res);
-  const dat = await res.json();
-  console.log(dat);
-  return (dat);
-}
- 
-async function page(){
-
-  const clases = await consulta();
-  //console.log(clases);
   
     return (
         <>
@@ -35,4 +37,4 @@ async function page(){
 
 }
 
-export default page;
+export default Page;
