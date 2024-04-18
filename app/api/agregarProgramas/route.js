@@ -6,13 +6,11 @@ export async function POST(request) {
     const conn = await pool.getConnection();
     const data = await request.json();
     const datos = [
-      data.nombre,
-      data.contraseña,
-      data.rolf
+      data.programa
     ];
     //console.log(datos);
     const rows = await conn.query(
-      "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, ?);",
+        "INSERT INTO programas (programa) VALUES (?);",
         datos
     );
     console.log(rows);

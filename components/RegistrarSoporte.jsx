@@ -102,10 +102,13 @@ function RegistrarSoporte({ profes, llave }) {
       },
     });
 
-    const data = await res.json();
-    console.log("ESTOS SON LOS TECNICOS");
-    typeof data;
-    //console.log(data);
+    let data = await res.json();
+    
+    data = data.sort((a,b) => {
+      if(a.tecnico < b.tecnico) {
+        return -1;
+      }
+    });
 
     if (process.browser) {
       const tecnicosd = document.querySelector("#selectorTecnicos");

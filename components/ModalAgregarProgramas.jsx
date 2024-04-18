@@ -1,18 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
 
-function ModalAgregarTecnico() {
-
-  const [nombreTec, setNombreTec] = useState("");
-
+function ModalAgregarProgramas() {
+  const [programa, setPrograma] = useState("");
 
   useEffect(() => {});
 
-  async function agregarTecnico(nombre) {
-    const res = await fetch("/api/agregarTecnico", {
+  async function agregarProgramas(programa) {
+    console.log(programa);
+    const res = await fetch("/api/agregarProgramas", {
       method: "POST",
       body: JSON.stringify({
-        nombre
+        programa,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +30,7 @@ function ModalAgregarTecnico() {
           data-bs-toggle="modal"
           data-bs-target="#exampleModal2"
         >
-          Agregar Tecnico
+          Agregar Programa
         </button>
       </div>
       {/*<!-- Modal -->*/}
@@ -46,7 +45,7 @@ function ModalAgregarTecnico() {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Agregar un nuevo tecnico
+                Agregar un nuevo programa
               </h1>
               <button
                 type="button"
@@ -60,16 +59,15 @@ function ModalAgregarTecnico() {
                 <div className="row">
                   <div className="col">
                     <label htmlFor="floatingPlaintextInput">
-                      Nombre del tecnico
+                      Nombre del programa
                     </label>
                     <input
                       type="text"
                       className="form-control-plaintext"
                       id="idNombre"
-                      onChange={(e) => setNombreTec(e.target.value)}
+                      onChange={(e) => setPrograma(e.target.value)}
                     />
                   </div>
-
                 </div>
               </div>
             </div>
@@ -85,8 +83,9 @@ function ModalAgregarTecnico() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dissmiss="modal"
-                onClick={() => {agregarTecnico(nombreTec)}}
-                
+                onClick={() => {
+                  agregarProgramas(programa);
+                }}
               >
                 Agregar
               </button>
@@ -98,4 +97,4 @@ function ModalAgregarTecnico() {
   );
 }
 
-export default ModalAgregarTecnico;
+export default ModalAgregarProgramas;

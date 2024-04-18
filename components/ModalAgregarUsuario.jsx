@@ -9,24 +9,28 @@ function ModalAgregarUsuario() {
   useEffect(() => {});
 
   async function agregarUsuario(nombre, contraseña, rol) {
+    let rolf;
     if(rol === "Usuario"){
-      rol = "user";
-    }else{
-      rol = "admin";
-    }
+      rolf = "user";
+    }else if(rol === "Administrador"){
+      rolf = "admin";
+    } 
     const res = await fetch("/api/agregarUsuario", {
       method: "POST",
       body: JSON.stringify({
         nombre,
         contraseña,
-        rol,
+        rolf
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    window.location.reload();
+    
+      window.location.reload();
+    
+
   }
 
   return (
@@ -45,7 +49,7 @@ function ModalAgregarUsuario() {
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -62,7 +66,7 @@ function ModalAgregarUsuario() {
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <div className="container">
                 <div className="row">
                   <div className="col">
@@ -96,8 +100,9 @@ function ModalAgregarUsuario() {
                       id="inputRol"
                       onChange={(e) => setRolUs(e.target.value)}
                     >
-                      <option> Usuario</option>
-                      <option> Administrador</option>
+                      <option>----Seleccione----</option>
+                      <option>Usuario</option>
+                      <option>Administrador</option>
                     </select>
                   </div>
                 </div>
@@ -115,7 +120,8 @@ function ModalAgregarUsuario() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dissmiss="modal"
-                onClick={() => {agregarUsuario(nombreUs, contraseñaUs, rolUs)}}
+                onClick={() => {
+                  agregarUsuario(nombreUs, contraseñaUs, rolUs)}}
                 
               >
                 Agregar

@@ -22,7 +22,9 @@ function Navigation() {
     }
   }
 
-  useEffect(() => {ValidarSesion()}, []);
+  useEffect(() => {
+    ValidarSesion();
+  }, []);
 
   return (
     <>
@@ -75,9 +77,19 @@ function Navigation() {
                 </>
               ) : (
                 <>
-                <li className="nav-item">
+                  <li className="nav-item">
+                    <Link className="nav-link" href="/gestionProgramas">
+                      Gestion de Programas
+                    </Link>
+                  </li>
+                  <li className="nav-item">
                     <Link className="nav-link" href="/gestionUsuarios">
                       Gestion de Usuarios
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" href="/gestionTecnicos">
+                      Gestion de Tecnicos
                     </Link>
                   </li>
                   <li className="nav-item">

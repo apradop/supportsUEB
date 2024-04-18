@@ -23,6 +23,7 @@ function RegistrarClase({ profes, llave }) {
   
 
   useEffect(() => {
+    leerProgramas();
     if (
       profes !== undefined &&
       profes !== null &&
@@ -82,6 +83,34 @@ function RegistrarClase({ profes, llave }) {
     setHoraIni("");
     setHoraFini("");
     setIsDisabled(false)
+  }
+
+  async function leerProgramas(){
+    const res = await fetch("/api/listadoProgramas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    let data = await res.json();
+    //typeof data;
+
+    data = data.sort((a,b) => {
+      if(a.programa < b.programa) {
+        return -1;
+      }
+    });
+
+    if(process.browser){
+      const programasl = document.querySelector("#selectorProgramas");
+
+      let out = "";
+      for (let pro of data) {
+        out += `<option >${pro.programa} </option>`;
+      }
+      programasl.innerHTML = out;
+    }
   }
 
 
@@ -168,7 +197,7 @@ function RegistrarClase({ profes, llave }) {
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
               Herramientas a utilizar (Si desea escoger mas de una, mantenga presionada la tecla ctrl)
             </label>
-            <select className="form-select" id="inputGroupSelect01" multiple
+            <select className="form-select" id="selectorProgramas" multiple
             onChange={(e) => {
 
               const options = [...e.target.selectedOptions];
@@ -177,68 +206,7 @@ function RegistrarClase({ profes, llave }) {
               setHerramientas({values});
 
             }}>
-              <option>ARGIS</option>
-              <option>ARGIS PRO</option>
-              <option>AUTODESK 3DMAX</option>
-              <option>AUTODESK AUTOCAD</option>
-              <option>AUTODESK FUSION 360</option>
-              <option>AUTODESK MAYA</option>
-              <option>AUTODESK MESHMIXER</option>
-              <option>AUTODESK MUDBOX</option>
-              <option>AUTODESK REVIT</option>
-              <option>BIZAGI</option>
-              <option>BLENDER</option>
-              <option>BONGO</option>
-              <option>C++</option>
-              <option>CELONIS</option>
-              <option>CMAP TOOLS</option>
-              <option>DBEAVER</option>
-              <option>ECLIPSE</option>
-              <option>EPI INFO</option>
-              <option>EPIDATA</option>
-              <option>FINALE</option>
-              <option>FLAMINGO</option>
-              <option>FREE MIND</option>
-              <option>GOOGLE EARTH</option>
-              <option>GRASHOPPER</option>
-              <option>HEC-RAS, HEC-HMS</option>
-              <option>ILWIS</option>
-              <option>JAMOVI</option>
-              <option>KEYSHOT</option>
-              <option>MARKETBOOT</option>
-              <option>MENDELEY</option>
-              <option>MYSQL WORKBENCH</option>
-              <option>NETBEANS</option>
-              <option>OPEN COBOL IDE</option>
-              <option>ORACLE 11 G EXPRESS</option>
-              <option>PAQUETE OFFICE</option>
-              <option>PENGUIN</option>
-              <option>POWER BI</option>
-              <option>PROJECT</option>
-              <option>PROSESSING</option>
-              <option>QGIS</option>
-              <option>R</option>
-              <option>R STUDIO</option>
-              <option>RHINO CAM</option>
-              <option>RHINOCEROS</option>
-              <option>SKETCH BOOK</option>
-              <option>SKETCHUP PRO</option>
-              <option>SOLIDWORKS</option>
-              <option>SPSS</option>
-              <option>STATA</option>
-              <option>SUITE CREATIVE CLOUD</option>
-              <option>VENSIM</option>
-              <option>VIRTUAL BOX</option>
-              <option>VISIO</option>
-              <option>VISUAL ESTUDIO CODE</option>
-              <option>VRAY</option>
-              <option>VRAY RHINO</option>
-              <option>WEAP</option>
-              <option>WINLOGILAB</option>
-              <option>WRITE AND CITE</option>
-              <option>XAMP</option>
-              <option>XPPEN</option>
-              <option>ZBRUSH</option>
+              
             </select>
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
               Observaciones
