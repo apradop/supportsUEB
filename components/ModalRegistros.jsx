@@ -105,9 +105,6 @@ function ModalRegistros({
 
       router.push("/listadoClases");
       
-      setTimeout(() => {
-        window.location.reload();
-      }, 100);
       
     }
   

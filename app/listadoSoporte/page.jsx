@@ -1,7 +1,7 @@
 "use client";
 import ListadoSoporte from "@/components/ListadoSoporte";
 import Navigation from "@/components/Navigation";
-import React, { useState, useEffect} from 'react';
+import { useState, useEffect} from 'react';
 import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/navigation";
 

@@ -10,18 +10,30 @@ function Navigation() {
   const router = useRouter();
   const { useSessionUser, useSessionAdmin } = useSession();
   const [boleanUser, setBoleanUser] = useState(false);
+  const [boleanAdmin, setBoleanAdmin] = useState(false);
 
-  function ValidarSesion() {
-    if (useSessionUser() === false && useSessionAdmin() === true){
-      setBoleanUser(false);
+  useEffect(() => {
+    ValidarSesionUser();
+    ValidarSesionAdmin();
+  }, []);
+
+  function ValidarSesionUser() {
+    if (useSessionUser() === false) {
+        setBoleanUser(false);
     } else {
       setBoleanUser(true);
+
     }
   }
 
-  useEffect(() => {
-    ValidarSesion();
-  }, []);
+  function ValidarSesionAdmin() {
+    if (useSessionAdmin() === true) {
+        setBoleanAdmin(false);
+    } else {
+      setBoleanAdmin(true);
+
+    }
+  }
 
   return (
     <>
