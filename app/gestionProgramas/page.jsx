@@ -1,34 +1,52 @@
+"use client";
+
 import ListadoProgramas from "@/components/ListadoProgramas";
 import ModalAgregarProgramas from "@/components/ModalAgregarProgramas";
 import Navigation from "@/components/Navigation";
+import { useEffect, useState } from "react";
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
 
-async function consulta() {
-  const res = await fetch("http://localhost:3000/api/listadoProgramas", {
-    method: "POST",
-    body: JSON.stringify({ mensaje: "mensaje" }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-cache",
-    mode: "cors",
-  });
 
-  let dat = await res.json();
+function Page() {
+  
+  const { useSessionAdmin } = useSession();
+    const router = useRouter();
 
-  dat = dat.sort((a,b) => {
-    if(a.programa < b.programa) {
-      return -1;
+    function ValidarSesion() {
+  
+      if(useSessionAdmin() === false){
+        router.push("/");
+      }
+  
     }
-  });
 
+    const [programas, setProgramas] = useState({})
 
-  return dat;
-}
+    const programa =  async () => {
+      var res = await fetch("/api/listadoProgramas", {
+        method: "POST",
+        body: JSON.stringify({ mensaje: "mensaje" }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+        mode: "cors",
+      }).then(res => res.json());
 
-async function page() {
-  let programas = await consulta();
+      res = res.sort((a,b) => {
+        if(a.username < b.username) {
+          return -1;
+        }
+      });
+      setProgramas(res);
+  
+    }
 
- 
+    useEffect(() => {
+      ValidarSesion();
+      programa();
+    }, []);
 
   return (
     <>
@@ -58,4 +76,4 @@ async function page() {
   );
 }
 
-export default page;
+export default Page;
