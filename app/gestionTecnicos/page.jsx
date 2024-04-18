@@ -1,10 +1,29 @@
+"use client";
+
 import ListadoTecnicos from "@/components/ListadoTecnicos";
 import Navigation from "@/components/Navigation";
 import ModalAgregarTecnico from "@/components/ModalAgregarTecnico";
+import { useEffect, useState } from "react";
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
 
+function Page() {
 
-async function consulta() {
-    const res = await fetch("http://localhost:3000/api/listadoTecnico", {
+  const { useSessionAdmin } = useSession();
+  const router = useRouter();
+
+  function ValidarSesion() {
+
+    if(useSessionAdmin() === false){
+      router.push("/");
+    }
+
+  }
+
+  const [tecnico, setTecnico] = useState({})
+
+  const tecnicos =  async () => {
+    var res = await fetch("/api/listadoTecnico", {
       method: "POST",
       body: JSON.stringify({ mensaje: "mensaje" }),
       headers: {
@@ -12,23 +31,21 @@ async function consulta() {
       },
       cache: "no-cache",
       mode: "cors",
+    }).then(res => res.json());
+
+    res = res.sort((a,b) => {
+      if(a.username < b.username) {
+        return -1;
+      }
     });
-  
-    let dat = await res.json();
+    setTecnico(res);
 
-    dat = dat.sort((a,b) => {
-        if(a.tecnico < b.tecnico) {
-          return -1;
-        }
-      });
-
-    return dat;
   }
 
-async function page() {
-
-    const tecnicos = await consulta();
-  //console.log(tecnicos);
+  useEffect(() => {
+    ValidarSesion();
+    tecnicos();
+  }, []);
 
     return (
         <>
@@ -48,7 +65,7 @@ async function page() {
                 </tr>
               </thead>
               <tbody>
-                <ListadoTecnicos tecnicos={tecnicos} />
+                <ListadoTecnicos tecnicos={tecnico} />
               </tbody>
             </table>
           </div>
@@ -59,4 +76,4 @@ async function page() {
 
 }
 
-export default page;
+export default Page;
