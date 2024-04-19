@@ -7,7 +7,7 @@ function ModalAgregarProgramas() {
   useEffect(() => {});
 
   async function agregarProgramas(programa) {
-    console.log(programa);
+    //console.log(programa);
     const res = await fetch("/api/agregarProgramas", {
       method: "POST",
       body: JSON.stringify({

@@ -7,7 +7,7 @@ export async function GET() {
     const rows = await conn.query(
       `SELECT * FROM clases WHERE estado = 'activa'`
     );
-    //console.log(rows);
+    ////console.log(rows);
 
     
     return new NextResponse(JSON.stringify(rows));
@@ -24,7 +24,7 @@ export async function POST(request) {
     const rows = await conn.query(
       `SELECT * FROM clases WHERE estado = 'activa'`
     );
-    //console.log(rows);
+    ////console.log(rows);
 
     
     return new NextResponse(JSON.stringify(rows));

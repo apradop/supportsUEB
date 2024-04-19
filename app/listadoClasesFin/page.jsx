@@ -24,7 +24,7 @@ function Page(){
     mode: "cors"
   }).then(res => res.json());
   setClases(res);
-  console.log(res);
+  //console.log(res);
   }
 
   

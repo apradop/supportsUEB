@@ -15,11 +15,11 @@ export async function POST(request) {
       "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, ?);",
         datos
     );
-    console.log(rows);
+    //console.log(rows);
     conn.end();
     return new NextResponse(JSON.stringify(rows));
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     return new NextResponse(JSON.stringify({ error: err.message }));
   }
 }

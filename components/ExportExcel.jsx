@@ -29,13 +29,13 @@ function ExportExcel({ clases }) {
 
   function obtenerClasesXFecha(clases, fecha1, fecha2) {
 
-    console.log(fecha1);
+    //console.log(fecha1);
     const f = fecha1.split("-");
     let date1 = new Date(f[1] + "/" + f[2] + "/" + f[0]);
-    console.log(date1);
+    //console.log(date1);
     const f2 = fecha2.split("-");
     let date2 = new Date(f2[1] + "/" + f2[2] + "/" + f2[0]);
-    console.log(date2);
+    //console.log(date2);
 
     if (fecha1 === "" || fecha2 === "") {
       swal({
@@ -55,11 +55,11 @@ function ExportExcel({ clases }) {
       var clasesFiltradas = clases.filter((clase) => {
         const fechaa = clase.fecha.split("/");
         const fecha = new Date(fechaa[1] + "/" + fechaa[0] + "/" + fechaa[2]);
-        console.log(fecha);
+        //console.log(fecha);
 
-        console.log(date1.getTime());
-        console.log(date2.getTime());
-        console.log(fecha.getTime());
+        //console.log(date1.getTime());
+        //console.log(date2.getTime());
+        //console.log(fecha.getTime());
         if (fecha.getTime() >= date1.getTime() && fecha.getTime() <= date2.getTime()) {
           return clase;
         }if (fecha.getTime() === date1.getTime() && fecha.getTime() === date2.getTime()) {
@@ -67,7 +67,7 @@ function ExportExcel({ clases }) {
         }
       });
 
-      console.log(clasesFiltradas);
+      //console.log(clasesFiltradas);
       ExportToExcel(clasesFiltradas);
     }
   }
@@ -124,7 +124,7 @@ function ExportExcel({ clases }) {
       return primerArreglo;
     });
 
-    console.log(arreglo);
+    //console.log(arreglo);
 
     const { useExportToExcel } = useExcel();
 

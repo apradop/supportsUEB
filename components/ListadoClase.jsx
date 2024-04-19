@@ -24,7 +24,7 @@ function ListadoClases({ clases }) {
   var clase = setInterval(() => {
     verificarClases(clas, clase);
   }, 120000);
-  //console.log(clases);
+  ////console.log(clases);
 
   function verificarClases(clases, cls) {
     try {
@@ -32,7 +32,7 @@ function ListadoClases({ clases }) {
         clases.map((clase) => {
           const date = Date.now();
           const hoy = new Date(date);
-          console.log(clase.horaf);
+          //console.log(clase.horaf);
           const hora =
             hoy.getMonth() +
             1 +
@@ -42,12 +42,12 @@ function ListadoClases({ clases }) {
             hoy.getFullYear() +
             " " +
             clase.horaf;
-          console.log(hora);
+          //console.log(hora);
           const horaf = new Date(hora);
-          console.log(horaf.getTime());
-          console.log(hoy.getTime());
+          //console.log(horaf.getTime());
+          //console.log(hoy.getTime());
           if (horaf.getTime() <= hoy.getTime()) {
-            console.log("entro");
+            //console.log("entro");
             const res = fetch("/api/cambiarEstado", {
               method: "POST",
               body: JSON.stringify({
@@ -70,18 +70,18 @@ function ListadoClases({ clases }) {
           }
         }, 100);
       } else {
-        console.log("no entro");
-        console.log(clas);
+        //console.log("no entro");
+        //console.log(clas);
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 
-  //console.log(clases);
+  ////console.log(clases);
   const date = Date.now();
   const hoy = new Date(date);
-  //console.log(hoy.toLocaleDateString());
+  ////console.log(hoy.toLocaleDateString());
 
   return (
     <>

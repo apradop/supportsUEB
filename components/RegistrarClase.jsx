@@ -31,13 +31,13 @@ function RegistrarClase({ profes, llave }) {
     ) {
       for (var i = 0; i < Object.keys(profes).length; i++) {
 
-        console.log(profes[i].Fecha + " " + profes[i].HoraInicial)
+        //console.log(profes[i].Fecha + " " + profes[i].HoraInicial)
         let horaini = new Date(profes[i].Fecha + " " + profes[i].HoraInicial)
         let horafini = new Date(profes[i].Fecha + " " + profes[i].HoraFinal)
 
-        console.log(horaini.getTime())
-        console.log(horafini.getTime())
-        console.log(hora.getTime())
+        //console.log(horaini.getTime())
+        //console.log(horafini.getTime())
+        //console.log(hora.getTime())
         if (horaini.getTime()  <= hora.getTime()  && horafini.getTime() >= hora.getTime()) {
           setProfesor(profes[i]);
           boolean = false;
@@ -202,7 +202,7 @@ function RegistrarClase({ profes, llave }) {
 
               const options = [...e.target.selectedOptions];
               const values = options.map(option => option.value);
-              console.log({values});
+              //console.log({values});
               setHerramientas({values});
 
             }}>

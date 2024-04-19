@@ -19,7 +19,7 @@ export async function POST(req, res){
     const url = process.env.LINKENCUESTA;
     const urlCompleta = `<a href="` + url + `"> LINK </a>`;
     
-    console.log(usuario)
+    //console.log(usuario)
     try {
         await sendMail(
             "Registro de un nuevo Soporte",

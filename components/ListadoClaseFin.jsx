@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function ListadoClasesFin({ clases }) {
 
-  console.log(clases);
+  //console.log(clases);
   const [clase, setClases] = useState({});
   const [bool, setBool] = useState(true);
 

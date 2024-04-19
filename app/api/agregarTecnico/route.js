@@ -8,16 +8,16 @@ export async function POST(request) {
     const datos = [
       data.nombre
     ];
-    //console.log(datos);
+    ////console.log(datos);
     const rows = await conn.query(
         "INSERT INTO tecnicos (tecnico) VALUES (?);",
         datos
     );
-    console.log(rows);
+    //console.log(rows);
     conn.end();
     return new NextResponse(JSON.stringify(rows));
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     return new NextResponse(JSON.stringify({ error: err.message }));
   }
 }

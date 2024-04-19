@@ -8,7 +8,7 @@ export async function GET() {
     const rows = await conn.query(
       `UPDATE clases SET estado = 'finalizada' , horaFinalReal = '${horaIniReal}' WHERE id = "${data.id}"`
     );
-    //console.log(rows);
+    //////console.log(rows);
 
     
     return new NextResponse(JSON.stringify(rows));
@@ -28,15 +28,15 @@ export async function POST(request) {
     const hoy =  new Date(date);
     const hora = hoy.getTime();
     const resutl = new Date(hora);
-    console.log(data.horaIniReal);
+    ////console.log(data.horaIniReal);
     const horaIniReal = (hoy.getMonth() + 1) + "/" + hoy.getDate() + "/"  + hoy.getFullYear() +" " +data.horaIniReal;
-    console.log(horaIniReal);
+    ////console.log(horaIniReal);
     const dura = new Date(horaIniReal);
-    console.log(dura.getTime());
-    console.log(hoy.getTime());
-    console.log((hoy.getTime() - dura.getTime()) );
+    ////console.log(dura.getTime());
+    ////console.log(hoy.getTime());
+    ////console.log((hoy.getTime() - dura.getTime()) );
     var duracion = (hoy.getTime() - dura.getTime()) / (1000*60);
-    console.log(duracion);
+    ////console.log(duracion);
     let horaFinalReal= "";
 
     if (resutl.getHours() < 10) {
@@ -64,7 +64,7 @@ export async function POST(request) {
       const horaIniReal = (hoy.getMonth() + 1) + "/" + hoy.getDate() + "/"  + hoy.getFullYear() +" " +data.horaIniReal;
       const duraI = new Date(horaIniReal);
       duracion = (duraF.getTime() - duraI.getTime()) / (1000*60);
-      console.log(duracion);
+      ////console.log(duracion);
     }
 
 
@@ -72,9 +72,9 @@ export async function POST(request) {
       `UPDATE clases SET estado = 'finalizada' , horaFinalReal = '${horaFinalReal}', duracion = '${duracion}' , profeTerminar = '${data.terminar}' WHERE id = "${data.id}"`
     );
 
-    console.log(horaFinalReal);
+    ////console.log(horaFinalReal);
 
-    //console.log(rows);
+    ////console.log(rows);
 
     
     return new NextResponse(JSON.stringify(rows));

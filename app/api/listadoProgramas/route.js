@@ -7,7 +7,7 @@ export async function POST(request) {
     const rows = await conn.query(
       `SELECT * FROM programas`
     );
-    //console.log(rows);
+    ////console.log(rows);
 
     
     return new NextResponse(JSON.stringify(rows));

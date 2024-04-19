@@ -16,7 +16,7 @@ function ModalRegistros({
 
   const date = Date.now();
   const hoy =  new Date(date);
-  console.log(hoy.toLocaleDateString());
+  //console.log(hoy.toLocaleDateString());
 
   const fecha = hoy.toLocaleDateString();
   const hora = hoy.getTime();
@@ -39,15 +39,15 @@ function ModalRegistros({
 
   function imprimir(){
 
-    console.log(nombre)
-    console.log(programa)
-    console.log(materia)
-    console.log(salon)
-    console.log(horaIni)
-    console.log(horaFini)
-    console.log(horaIniReal)
-    console.log(herramientas)
-    console.log(observaciones)
+    //console.log(nombre)
+    //console.log(programa)
+    //console.log(materia)
+    //console.log(salon)
+    //console.log(horaIni)
+    //console.log(horaFini)
+    //console.log(horaIniReal)
+    //console.log(herramientas)
+    //console.log(observaciones)
 
   }
 
