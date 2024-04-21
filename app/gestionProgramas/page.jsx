@@ -35,7 +35,7 @@ function Page() {
       }).then(res => res.json());
 
       res = res.sort((a,b) => {
-        if(a.username < b.username) {
+        if(a.programa < b.programa) {
           return -1;
         }
       });
