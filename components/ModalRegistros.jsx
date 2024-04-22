@@ -1,5 +1,3 @@
-"use client" ;
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -15,7 +13,6 @@ function ModalRegistros({
 }) {
   const [vacio, setVacio] = useState("");
   const router = useRouter();
-  const [herramienta,  setheramientas] = useState({});
 
   const date = Date.now();
   const hoy =  new Date(date);
@@ -38,14 +35,7 @@ function ModalRegistros({
       horaIniReal += resutl.getMinutes();
     }
 
-  useEffect(() => {
-    if(Object.values(herramientas).length === 0){
-      setheramientas({values: {}})
-    }else
-    {
-      setheramientas(herramientas)
-    }
-  });
+  useEffect(() => {});
 
   function imprimir(){
 
@@ -80,7 +70,7 @@ function ModalRegistros({
 
   function verificarEspacios() {
 
-    if (nombre === "" ||  programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" || Object.keys(herramienta.values).length === 0 ) {
+    if (nombre === "" || programa === "" || materia === "" || salon === "" || horaIni === "" || horaFini === "" || Object.keys(herramientas.values).length === 0 ) {
       swal({
         title: "Todos los campos son obligatorios", 
         button: false,
@@ -104,7 +94,7 @@ function ModalRegistros({
 
       const res = await fetch("/api/registrarClase", {
         method: "POST",
-        body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, horaIniReal,herramienta, observaciones }),
+        body: JSON.stringify({ nombre, programa, materia, salon, fecha ,horaIni, horaFini, horaIniReal,herramientas, observaciones }),
         headers: {
           "Content-Type": "application/json",
         },
