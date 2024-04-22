@@ -6,19 +6,35 @@ function ModalAgregarProgramas() {
 
   useEffect(() => {});
 
-  async function agregarProgramas(programa) {
-    //console.log(programa);
-    const res = await fetch("/api/agregarProgramas", {
-      method: "POST",
-      body: JSON.stringify({
-        programa,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  function verificarEspacios(programa){
+    if(programa === ""){
+      swal({
+        title: "Todos los campos son obligatorios", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 2000
+      });
+      return false;
+    }
+    return true;
 
-    window.location.reload();
+  }
+
+  async function agregarProgramas(programa) {
+    if(verificarEspacios(programa) === true){
+      const res = await fetch("/api/agregarProgramas", {
+        method: "POST",
+        body: JSON.stringify({
+          programa,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      window.location.reload();
+    }
   }
 
   return (

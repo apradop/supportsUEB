@@ -8,29 +8,46 @@ function ModalAgregarUsuario() {
 
   useEffect(() => {});
 
+  function verificarEspacios(nombre, contraseña, rol){
+    console.log(nombre);
+    console.log(contraseña);
+    console.log(rol);
+    if(nombre === "" || contraseña === "" || rol === ""){
+      swal({
+        title: "Todos los campos son obligatorios", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 2000
+      });
+      return false;
+    }
+    return true;
+  }
+
   async function agregarUsuario(nombre, contraseña, rol) {
-    let rolf;
-    if(rol === "Usuario"){
-      rolf = "user";
-    }else if(rol === "Administrador"){
-      rolf = "admin";
-    } 
-    const res = await fetch("/api/agregarUsuario", {
-      method: "POST",
-      body: JSON.stringify({
-        nombre,
-        contraseña,
-        rolf
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    
-      window.location.reload();
-    
-
+    if(verificarEspacios(nombre,contraseña,rol) === true){
+      let rolf;
+      if(rol === "Usuario"){
+        rolf = "user";
+      }else if(rol === "Administrador"){
+        rolf = "admin";
+      } 
+      const res = await fetch("/api/agregarUsuario", {
+        method: "POST",
+        body: JSON.stringify({
+          nombre,
+          contraseña,
+          rolf
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      
+        window.location.reload();
+    }
   }
 
   return (
@@ -92,7 +109,7 @@ function ModalAgregarUsuario() {
                   </div>
 
                   <div className="row">
-                    <label htmlFor="floatingPlaintextInput">Contraseña</label>
+                    <label htmlFor="floatingPlaintextInput">Rol</label>
                   </div>
                   <div className="row">
                     <select

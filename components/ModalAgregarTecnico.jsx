@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import swal from "sweetalert";
 
 function ModalAgregarTecnico() {
 
@@ -8,18 +9,34 @@ function ModalAgregarTecnico() {
 
   useEffect(() => {});
 
-  async function agregarTecnico(nombre) {
-    const res = await fetch("/api/agregarTecnico", {
-      method: "POST",
-      body: JSON.stringify({
-        nombre
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  function verificarEspacios(nombre){
+    if(nombre === ""){
+      swal({
+        title: "Todos los campos son obligatorios", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 2000
+      });
+      return false;
+    }
+    return true;
+  }
 
-    window.location.reload();
+  async function agregarTecnico(nombre) {
+    if(verificarEspacios(nombre) === true){
+      const res = await fetch("/api/agregarTecnico", {
+        method: "POST",
+        body: JSON.stringify({
+          nombre
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      window.location.reload();
+    }
   }
 
   return (
