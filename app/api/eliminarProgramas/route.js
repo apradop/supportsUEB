@@ -8,7 +8,7 @@ export async function POST(request) {
     try {
   
       const rows = await conn.query(
-        `DELETE FROM usuarios WHERE id = '${data.id}'`
+        `DELETE FROM programas WHERE id = '${data.id}'`
       );
       ////console.log(rows);
   

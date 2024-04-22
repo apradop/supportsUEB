@@ -41,20 +41,20 @@ function ListadoClaseDetalle({
     setHoraf(horaf);
     setProgramas(programas.values.toString());
     setObservaciones(observaciones);
-    console.log(docente)
+    //////console.log(docente)
   }, []);
 
   function imprimir(){
 
-    console.log(id)
-    console.log(docente)
-    console.log(programa)
-    console.log(materia)
-    console.log(salon)
-    console.log(horai)
-    console.log(horaf)
-    console.log(programas.values.toString())
-    console.log(observaciones)
+    //////console.log(id)
+    //////console.log(docente)
+    //////console.log(programa)
+    //////console.log(materia)
+    //////console.log(salon)
+    //////console.log(horai)
+    //////console.log(horaf)
+    //////console.log(programas.values.toString())
+    //////console.log(observaciones)
     setId(id);
     setDocente(docente);
     setPrograma(programa);

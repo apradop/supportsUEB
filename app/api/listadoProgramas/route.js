@@ -2,22 +2,18 @@ import { NextResponse } from "next/server";
 import { pool } from "@/db";
 
 export async function POST(request) {
+  const conn = await pool.getConnection();
   try {
-    const conn = await pool.getConnection();
-    const data = await request.json();
-    const datos = [
-      data.nombre
-    ];
-    ////console.log(datos);
     const rows = await conn.query(
-        "INSERT INTO tecnicos (tecnico) VALUES (?);",
-        datos
+      `SELECT * FROM programas`
     );
-    //console.log(rows);
-    conn.end();
+    ////console.log(rows);
+
+    
     return new NextResponse(JSON.stringify(rows));
   } catch (err) {
-    //console.log(err);
     return new NextResponse(JSON.stringify({ error: err.message }));
+  } finally {
+    conn.end();
   }
 }

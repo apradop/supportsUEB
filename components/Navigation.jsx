@@ -8,21 +8,32 @@ import { useEffect, useState } from "react";
 
 function Navigation() {
   const router = useRouter();
-  const { useSessionUser } = useSession();
+  const { useSessionUser, useSessionAdmin } = useSession();
   const [boleanUser, setBoleanUser] = useState(false);
+  const [boleanAdmin, setBoleanAdmin] = useState(false);
 
-  function ValidarSesion() {
+  useEffect(() => {
+    ValidarSesionUser();
+    ValidarSesionAdmin();
+  }, []);
+
+  function ValidarSesionUser() {
     if (useSessionUser() === false) {
-      console.log("No hay sesión");
-      setBoleanUser(false);
+        setBoleanUser(false);
     } else {
-      console.log("Hay sesión");
       setBoleanUser(true);
-      console.log(boleanUser);
+
     }
   }
 
-  useEffect(() => {ValidarSesion()}, []);
+  function ValidarSesionAdmin() {
+    if (useSessionAdmin() === true) {
+        setBoleanAdmin(false);
+    } else {
+      setBoleanAdmin(true);
+
+    }
+  }
 
   return (
     <>
@@ -75,9 +86,19 @@ function Navigation() {
                 </>
               ) : (
                 <>
-                <li className="nav-item">
+                  <li className="nav-item">
+                    <Link className="nav-link" href="/gestionProgramas">
+                      Gestion de Programas
+                    </Link>
+                  </li>
+                  <li className="nav-item">
                     <Link className="nav-link" href="/gestionUsuarios">
                       Gestion de Usuarios
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" href="/gestionTecnicos">
+                      Gestion de Tecnicos
                     </Link>
                   </li>
                   <li className="nav-item">

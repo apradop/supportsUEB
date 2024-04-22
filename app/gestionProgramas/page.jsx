@@ -1,15 +1,15 @@
 "use client";
 
+import ListadoProgramas from "@/components/ListadoProgramas";
+import ModalAgregarProgramas from "@/components/ModalAgregarProgramas";
 import Navigation from "@/components/Navigation";
-import ListadoUsuarios from "@/components/ListadoUsuarios";
-import ModalAgregarUsuario from "@/components/ModalAgregarUsuario";
 import { useEffect, useState } from "react";
 import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/navigation";
 
 
 function Page() {
-
+  
   const { useSessionAdmin } = useSession();
     const router = useRouter();
 
@@ -21,10 +21,10 @@ function Page() {
   
     }
 
-    const [usuario, setUsuario] = useState({})
+    const [programas, setProgramas] = useState({})
 
-    const soportes =  async () => {
-      var res = await fetch("/api/listadoUsuarios", {
+    const programa =  async () => {
+      var res = await fetch("/api/listadoProgramas", {
         method: "POST",
         body: JSON.stringify({ mensaje: "mensaje" }),
         headers: {
@@ -35,19 +35,18 @@ function Page() {
       }).then(res => res.json());
 
       res = res.sort((a,b) => {
-        if(a.username < b.username) {
+        if(a.programa < b.programa) {
           return -1;
         }
       });
-      setUsuario(res);
+      setProgramas(res);
   
     }
 
     useEffect(() => {
       ValidarSesion();
-      soportes();
+      programa();
     }, []);
-
 
   return (
     <>
@@ -56,19 +55,18 @@ function Page() {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h1>Listado de Usuarios</h1>
-            <ModalAgregarUsuario />
+            <h1>Listado de Programas</h1>
+            <ModalAgregarProgramas />
             <table className="table table-hover">
               <thead>
                 <tr>
                   <th scope="col"> N°</th>
-                  <th scope="col"> Nombre</th>
-                  <th scope="col"> Rol</th>
+                  <th scope="col"> Nombre del Programa</th>
                   <th scope="col"> Gestion</th>
                 </tr>
               </thead>
               <tbody>
-                <ListadoUsuarios usuarios={usuario} />
+                <ListadoProgramas programas={programas} />
               </tbody>
             </table>
           </div>

@@ -6,21 +6,12 @@ export async function POST(request) {
     const conn = await pool.getConnection();
     const data = await request.json();
     const datos = [
-      data.nombre,
-      data.programa,
-      data.materia,
-      data.salon,
-      data.fecha,
-      data.horaIni,
-      data.horaFini,
-      data.horaIniReal,
-      data.herramientas,
-      data.observaciones,
+      data.programa
     ];
-    //console.log(datos);
+    ////console.log(datos);
     const rows = await conn.query(
-      "INSERT INTO clases (responsable, programa, materia, salon, fecha , horai, horaf, horaIniReal, programas, observaciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-      datos
+        "INSERT INTO programas (programa) VALUES (?);",
+        datos
     );
     //console.log(rows);
     conn.end();

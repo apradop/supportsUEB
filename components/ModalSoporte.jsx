@@ -22,7 +22,7 @@ function ModalRegistros({
 
   const date = Date.now();
   const hoy = new Date(date);
-  console.log(hoy.toLocaleDateString());
+  //console.log(hoy.toLocaleDateString());
 
   const fecha = hoy.toLocaleDateString();
 
@@ -37,18 +37,18 @@ function ModalRegistros({
   useEffect(() => {});
 
   function imprimir() {
-    console.log(nombre);
-    console.log(usuario);
-    console.log(nombreTec);
-    console.log(programa);
-    console.log(materia);
-    console.log(salon);
-    console.log(horaIni);
-    console.log(horaFini);
-    console.log(observaciones);
-    console.log(estado);
-    console.log(actividad);
-    console.log(actividadadi);
+    //console.log(nombre);
+    //console.log(usuario);
+    //console.log(nombreTec);
+    //console.log(programa);
+    //console.log(materia);
+    //console.log(salon);
+    //console.log(horaIni);
+    //console.log(horaFini);
+    //console.log(observaciones);
+    //console.log(estado);
+    //console.log(actividad);
+    //console.log(actividadadi);
   }
 
   function verificarHora() {
@@ -115,7 +115,7 @@ function ModalRegistros({
 
       return false;
     } else if (observaciones === "" && estado === "No") {
-      console.log("2")
+      //console.log("2")
       swal({
         title: "Todos los campos son obligatorios",
         button: false,
@@ -208,7 +208,7 @@ function ModalRegistros({
       enviarCorreo();
 
       if(estado2 === "Si"){
-        console.log("Entra a enviar el correo")
+        //console.log("Entra a enviar el correo")
         actividadadi = resAct;
         enviarCorreo2();
       }

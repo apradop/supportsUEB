@@ -27,7 +27,7 @@ export async function POST(request) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
         
-        //console.log(cedula)
+        ////console.log(cedula)
 
         var time = new Date()
         const dia = time.getDate()
@@ -43,7 +43,7 @@ export async function POST(request) {
 
         }
 
-        console.log(fulldate)
+        //console.log(fulldate)
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("actionID", "consultardatos");
@@ -61,7 +61,7 @@ export async function POST(request) {
         const res = await fetch("https://artemisa.unbosque.edu.co/serviciosacademicos/EspacioFisico/Interfas/funcionesEspaciosFisicosAsigandosReporte.php", requestOptions).catch(error => console.log('error', error))
         const data = await res.text()
         const jsonTables = parse("<table>" + dat + data + "</table>")
-        console.log(jsonTables.results)
+        //console.log(jsonTables.results)
       return new NextResponse(JSON.stringify(jsonTables.results));
     } catch (err) {
       return new NextResponse(JSON.stringify({ error: err.message }));

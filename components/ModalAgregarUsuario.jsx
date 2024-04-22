@@ -8,25 +8,46 @@ function ModalAgregarUsuario() {
 
   useEffect(() => {});
 
-  async function agregarUsuario(nombre, contraseña, rol) {
-    if(rol === "Usuario"){
-      rol = "user";
-    }else{
-      rol = "admin";
+  function verificarEspacios(nombre, contraseña, rol){
+    console.log(nombre);
+    console.log(contraseña);
+    console.log(rol);
+    if(nombre === "" || contraseña === "" || rol === ""){
+      swal({
+        title: "Todos los campos son obligatorios", 
+        button: false,
+        icon: "error",
+        text: "Verifique la información e intenté nuevamente",
+        timer: 2000
+      });
+      return false;
     }
-    const res = await fetch("/api/agregarUsuario", {
-      method: "POST",
-      body: JSON.stringify({
-        nombre,
-        contraseña,
-        rol,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    return true;
+  }
 
-    window.location.reload();
+  async function agregarUsuario(nombre, contraseña, rol) {
+    if(verificarEspacios(nombre,contraseña,rol) === true){
+      let rolf;
+      if(rol === "Usuario"){
+        rolf = "user";
+      }else if(rol === "Administrador"){
+        rolf = "admin";
+      } 
+      const res = await fetch("/api/agregarUsuario", {
+        method: "POST",
+        body: JSON.stringify({
+          nombre,
+          contraseña,
+          rolf
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      
+        window.location.reload();
+    }
   }
 
   return (
@@ -45,7 +66,7 @@ function ModalAgregarUsuario() {
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -62,7 +83,7 @@ function ModalAgregarUsuario() {
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <div className="container">
                 <div className="row">
                   <div className="col">
@@ -88,7 +109,7 @@ function ModalAgregarUsuario() {
                   </div>
 
                   <div className="row">
-                    <label htmlFor="floatingPlaintextInput">Contraseña</label>
+                    <label htmlFor="floatingPlaintextInput">Rol</label>
                   </div>
                   <div className="row">
                     <select
@@ -96,8 +117,9 @@ function ModalAgregarUsuario() {
                       id="inputRol"
                       onChange={(e) => setRolUs(e.target.value)}
                     >
-                      <option> Usuario</option>
-                      <option> Administrador</option>
+                      <option>----Seleccione----</option>
+                      <option>Usuario</option>
+                      <option>Administrador</option>
                     </select>
                   </div>
                 </div>
@@ -115,7 +137,8 @@ function ModalAgregarUsuario() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dissmiss="modal"
-                onClick={() => {agregarUsuario(nombreUs, contraseñaUs, rolUs)}}
+                onClick={() => {
+                  agregarUsuario(nombreUs, contraseñaUs, rolUs)}}
                 
               >
                 Agregar

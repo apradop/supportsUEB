@@ -37,18 +37,18 @@ function RegistrarSoporte({ profes, llave }) {
       Object.keys(profes).length > 0
     ) {
       for (var i = 0; i < Object.keys(profes).length; i++) {
-        console.log(profes[i].Fecha + " " + profes[i].HoraInicial);
+        //console.log(profes[i].Fecha + " " + profes[i].HoraInicial);
         let horaini = new Date(profes[i].Fecha + " " + profes[i].HoraInicial);
         let horafini = new Date(profes[i].Fecha + " " + profes[i].HoraFinal);
 
-        console.log(horaini.getTime());
-        console.log(horafini.getTime());
-        console.log(hora.getTime());
+        //console.log(horaini.getTime());
+        //console.log(horafini.getTime());
+        //console.log(hora.getTime());
         if (
           horaini.getTime() <= hora.getTime() &&
           horafini.getTime() >= hora.getTime()
         ) {
-          console.log("entro");
+          //console.log("entro");
           setProfesor(profes[i]);
           boolean = false;
         }
@@ -102,10 +102,13 @@ function RegistrarSoporte({ profes, llave }) {
       },
     });
 
-    const data = await res.json();
-    console.log("ESTOS SON LOS TECNICOS");
-    typeof data;
-    //console.log(data);
+    let data = await res.json();
+    
+    data = data.sort((a,b) => {
+      if(a.tecnico < b.tecnico) {
+        return -1;
+      }
+    });
 
     if (process.browser) {
       const tecnicosd = document.querySelector("#selectorTecnicos");
@@ -113,7 +116,7 @@ function RegistrarSoporte({ profes, llave }) {
       let out = "";
       out += `<option> ----Seleccione---- </option>`;
       for (let tec of data) {
-        console.log(tec.tecnico);
+        //console.log(tec.tecnico);
         out += `<option >${tec.tecnico} </option>`;
       }
       tecnicosd.innerHTML = out;
@@ -134,7 +137,7 @@ function RegistrarSoporte({ profes, llave }) {
               className="form-select"
               id="selectorTecnicos"
               onChange={(e) => {
-                console.log(e.target.value);
+                //console.log(e.target.value);
                 setNombreTec(e.target.value);
               }}
             >

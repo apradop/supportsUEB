@@ -1,34 +1,52 @@
-
+"use client";
 import ListadoSoporte from "@/components/ListadoSoporte";
 import Navigation from "@/components/Navigation";
+import { useState, useEffect} from 'react';
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
+
+  function Page() {
+
+    const { useSessionAdmin } = useSession();
+    const router = useRouter();
+
+    function ValidarSesion() {
+  
+      if(useSessionAdmin() === false){
+        router.push("/");
+      }
+  
+    }
+
+    const [soporte, setSoporte] = useState({})
 
 
-async function consulta() {
-  const res = await fetch("http://localhost:3000/api/listadoSoportes", {
-    method: "POST",
-    body: JSON.stringify({ mensaje: "mensaje" }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-cache",
-    mode: "cors",
-  });
+  const soportes =  async () => {
+    const res = await fetch("/api/listadoSoportes", {
+      method: "POST",
+      body: JSON.stringify({ mensaje: "mensaje" }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-cache",
+      mode: "cors",
+    }).then(res => res.json());
 
-  //console.log(res);
-  const dat = await res.json();
-  console.log(dat);
-  return dat;
-}
-async function page() {
-  const soportes = await consulta();
-  //console.log(clases);
+    setSoporte(res);
+
+  }
+
+  useEffect(() => {
+    ValidarSesion();
+    soportes();
+  }, []);
 
   return (
     <>
       <Navigation />
-      <ListadoSoporte soportes={soportes} />
+      <ListadoSoporte soportes={soporte} />
     </>
   );
 }
 
-export default page;
+export default Page;

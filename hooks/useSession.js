@@ -20,8 +20,9 @@ export const useSession = () => {
             window.sessionStorage.getItem("user") === ""   ||
             window.sessionStorage.getItem("user") === "user"
           ) {
-            router.push("/");
+            return false;
           } 
+        return true;
     }
 
     return { useSessionUser, useSessionAdmin }

@@ -6,12 +6,12 @@ export async function POST(request) {
   const conn = await pool.getConnection();
   const data = await request.json();
 
-  console.log(data);
+  //console.log(data);
   try {
     const rows = await conn.query(
       `SELECT * FROM usuarios WHERE username="${data.username}"AND password="${data.password}"`
     );
-    console.log(rows);
+    //console.log(rows);
     if (rows.length != 0) {
       boolean = true;
     }
