@@ -51,12 +51,6 @@ export async function POST(request) {
       horaFinalReal += resutl.getMinutes();
     }
 
-    if (resutl.getSeconds() < 10) {
-      horaFinalReal += "0" + resutl.getSeconds();
-    }else{
-      horaFinalReal += resutl.getSeconds();
-    }
-
     if(data.terminar === "no"){
       horaFinalReal = data.horaf;
       const horaf = (hoy.getMonth() + 1) + "/" + hoy.getDate() + "/"  + hoy.getFullYear() +" " +data.horaf;
