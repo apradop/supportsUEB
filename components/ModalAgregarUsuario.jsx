@@ -9,10 +9,7 @@ function ModalAgregarUsuario() {
   useEffect(() => {});
 
   function verificarEspacios(nombre, contraseña, rol){
-    console.log(nombre);
-    console.log(contraseña);
-    console.log(rol);
-    if(nombre === "" || contraseña === "" || rol === ""){
+    if(nombre === "" || contraseña === "" || rol === "" || rol === "----Seleccione----"){
       swal({
         title: "Todos los campos son obligatorios", 
         button: false,

@@ -99,11 +99,16 @@ function ModalRegistros({
       nombre === "" ||
       usuario === "" ||
       nombreTec === "" ||
+      nombreTec === "----Seleccione----" ||
       programa === "" ||
       materia === "" ||
       salon === "" ||
       horaIni === "" ||
-      horaFini === ""
+      horaFini === "" ||
+      actividad === "" ||
+      actividad === "----Seleccione----" ||
+      actividadadi === "" ||
+      actividadadi === "----Seleccione----"
     ) {
       swal({
         title: "Todos los campos son obligatorios",
